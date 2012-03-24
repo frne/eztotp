@@ -1,11 +1,11 @@
 <?php
 /**
- * TITLE
+ * EzTotp: Two-way authentication with Google Authenticator for eZPublish
  *
- * @access public
- * @author ymc-frne <frank.neff@ymc.ch>
- * @license ymc standard license <license@ymc.ch>
- * @since 2012/03/21
+ * @package EzTotp
+ * @version 0.1 unstable/development
+ * @author Frank Neff <fneff89@gmail.com>
+ * @license LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html
  */
 
 /**
@@ -15,30 +15,48 @@ class EzTotpFactory
 {
     private $config;
 
-    private $user;
-
-    public function __construct( EzTotpConfiguration $config, EzTotpUser $user = null )
+    public function __construct(EzTotpConfiguration $config)
     {
         $this->config = $config;
-        if($user)
-        {
-            $this->user = $user;
+    }
+
+    public function load($type)
+    {
+        $factories = $this->getAvailableFactories();
+
+        if (array_key_exists($type, $factories)) {
+            $factoryName = $factories[$type];
+            $factory = new $factoryName($this);
+
+            if(!$factory instanceof EzTotpFactoryAbstract)
+            {
+                throw new EzTotpFactoryException("No valid factory: $factoryName! Please extend EzTotpFactoryAbstract!");
+            }
+
+            return $factory;
+
         }
-    }
+        else
+        {
+            throw new EzTotpFactoryException("Factory configuration for type '" . $type . "' does not exist!");
+        }
 
-    public function setUser(EzTotpUser $user)
-    {
-        $this->user = $user;
-    }
-
-    public function getUser()
-    {
-        return $this->user;
     }
 
     public function getConfig()
     {
         return $this->config;
     }
+
+    private function getAvailableFactories()
+    {
+        if( !isset($this->config->factory) )
+        {
+            throw new EzTotpConfigurationException("Configuration fail! No availableFactories found in eztotp.ini.");
+        }
+
+        return $this->config->factory["availableFactories"];
+    }
+
 
 }

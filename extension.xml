@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <software>
     <metadata>
-        <name>eZ TOTP - On Time Password Provider to use with Google Authenticator</name>
-        <version>1.0.0</version>
+        <name>EzTotp: Two-way authentication with Google Authenticator for eZPublish</name>
+        <version>0.1 unstable/development</version>
         <copyright>Copyright (C) 2012 Frank Neff</copyright>
-        <license>GNU General Public License v3.0</license>
+        <license>LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html</license>
     </metadata>
 </software>

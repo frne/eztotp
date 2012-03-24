@@ -1,64 +1,169 @@
 <?php
 /**
- * TITLE
+ * EzTotp: Two-way authentication with Google Authenticator for eZPublish
  *
- * @access public
- * @author ymc-frne <frank.neff@ymc.ch>
- * @license ymc standard license <license@ymc.ch>
- * @since 2012/03/21
+ * @package EzTotp
+ * @version 0.1 unstable/development
+ * @author Frank Neff <fneff89@gmail.com>
+ * @license LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html
  */
 
 /**
  * Class EzTotpUser
  */
-class EzTotpUser
+class EzTotpUser extends eZUser
 {
+    /**
+     * @var string
+     */
+    public $otpSeed;
+
+    /**
+     * @var int
+     */
+    public $otpState;
+
     /**
      * @var EzTotpUserPersistentObject
      */
-    protected $userPersistentObject;
+    public $otpObject;
 
     /**
-     * @var ezUser
+     * @param EzTotpUserPersistentObject $object
      */
-    protected $ezUserObject;
-
-    public function __construct()
+    public function setOtpObject($object)
     {
+        $this->otpObject = $object;
+        $this->otpSeed = $object->OtpSeed;
+        $this->otpState = $object->State;
     }
 
     /**
-     * @param EzTotpUserPersistentObject $persistentUser
+     * @static
+     * @return array
      */
-    public function setUserPersistentObject( EzTotpUserPersistentObject $persistentUser )
+    static function definition()
     {
-        $this->userPersistentObject = $persistentUser;
+        static $definition = array('fields' => array('contentobject_id' => array('name' => 'ContentObjectID',
+            'datatype' => 'integer',
+            'default' => 0,
+            'required' => true,
+            'foreign_class' => 'eZContentObject',
+            'foreign_attribute' => 'id',
+            'multiplicity' => '0..1'),
+            'login' => array('name' => 'Login',
+                'datatype' => 'string',
+                'default' => '',
+                'required' => true),
+            'email' => array('name' => 'Email',
+                'datatype' => 'string',
+                'default' => '',
+                'required' => true),
+            'password_hash' => array('name' => 'PasswordHash',
+                'datatype' => 'string',
+                'default' => '',
+                'required' => true),
+            'password_hash_type' => array('name' => 'PasswordHashType',
+                'datatype' => 'integer',
+                'default' => 1,
+                'required' => true)),
+            'keys' => array('contentobject_id'),
+            'sort' => array('contentobject_id' => 'asc'),
+            'function_attributes' => array('contentobject' => 'contentObject',
+                'groups' => 'groups',
+                'has_stored_login' => 'hasStoredLogin',
+                'original_password' => 'originalPassword',
+                'original_password_confirm' => 'originalPasswordConfirm',
+                'roles' => 'roles',
+                'role_id_list' => 'roleIDList',
+                'limited_assignment_value_list' => 'limitValueList',
+                'is_logged_in' => 'isLoggedIn',
+                'is_enabled' => 'isEnabled',
+                'is_locked' => 'isLocked',
+                'last_visit' => 'lastVisit',
+                'login_count' => 'loginCount',
+                'has_manage_locations' => 'hasManageLocations'),
+            'relations' => array('contentobject_id' => array('class' => 'ezcontentobject',
+                'field' => 'id')),
+            'class_name' => 'EzTotpUser',
+            'name' => 'ezuser');
+        return $definition;
     }
 
     /**
-     * @param ezUser $ezUserObject
+     * @static
+     * @param int $id
+     * @param bool $asObject
+     * @return EzTotpUser|null
      */
-    public function setEzUserObject( ezUser $ezUserObject )
+    static function fetch($id, $asObject = true)
     {
-        $this->ezUserObject = $ezUserObject;
-    }
-
-    /**
-     * @return bool
-     * @throws EzTotpUserException
-     */
-    private function fetchByUserId( int $id )
-    {
-        if ( $id == eZUser::anonymousId() )
-        {
-            throw new EzTotpUserException( "You cannot use anonymous user for TOTP" );
+        if (!$id) {
+            return null;
         }
 
-        $this->setEzUserObject( eZUser::fetch( $id ) );
-        $this->setUserPersistentObject( EzTotpUserPersistentObject::fetch( $id ) );
+        $instance = eZPersistentObject::fetchObject(
+            self::definition(),
+            null,
+            array('contentobject_id' => $id),
+            $asObject
+        );
+
+        $instance->setOtpObject(EzTotpUserPersistentObject::fetch($id));
+
+        return $instance;
     }
 
-    private function getUserPersistentObjectByEzUser()
+    /**
+     * @static
+     * @param int $id
+     * @param bool $asObject
+     * @return EzTotpUser|null
+     */
+    static function fetchByName($login, $asObject = true)
     {
+        if (!$login) {
+            return null;
+        }
+
+        $instance = eZPersistentObject::fetchObject(
+            self::definition(),
+            null,
+            array( 'LOWER( login )' => strtolower( $login ) ),
+            $asObject
+        );
+
+        // TODO: setOtpObject
+        // $instance->setOtpObject(EzTotpUserPersistentObject::fetch($id));
+
+
+        return $instance;
     }
+
+    /**
+     * @static
+     * @param int $id
+     * @param bool $asObject
+     * @return EzTotpUser|null
+     */
+    static function fetchByEmail($email, $asObject = true)
+    {
+        if (!$email) {
+            return null;
+        }
+
+        $instance = eZPersistentObject::fetchObject(
+            self::definition(),
+            null,
+            array('LOWER( email )' => strtolower($email)),
+            $asObject
+        );
+
+        // TODO: setOtpObject
+        //$instance->setOtpObject(EzTotpUserPersistentObject::fetch($id));
+
+        return $instance;
+    }
+
+
 }

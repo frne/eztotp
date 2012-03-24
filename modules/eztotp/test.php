@@ -1,26 +1,38 @@
 <?php
 /**
- * Test module for the class
+ * EzTotp: Two-way authentication with Google Authenticator for eZPublish
  *
- * @access public
- * @author ymc-frne <frank.neff@ymc.ch>
- * @license ymc standard license <license@ymc.ch>
- * @since 2012/03/23
+ * @package EzTotp
+ * @version 0.1 unstable/development
+ * @author Frank Neff <fneff89@gmail.com>
+ * @license LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html
  */
 
-// wire up for eZTotop
-$configuration = new EzTotpConfiguration("development");
-$user = new EzTotpUser();
-$factory = new EzTotpFactory($configuration, $user);
-
-
-$currentUser = eZUser::currentUser();
-$factory->getUser()->setEzUserObject($currentUser);
 
 echo "<pre>";
+// wire up for eZTotop
 
-var_dump($factory);
+try {
+    // create configuration
+    $configuration = new EzTotpConfiguration();
+    $configuration->loadConfiguration();
 
-echo "</pre>";
 
+
+    // create factory
+    $factory = new EzTotpFactory($configuration);
+    $userFactory = $factory->load("user");
+
+    // get user
+    $user = $userFactory->getUserById(14);
+
+    print_r($user);
+
+    echo "</pre>";
+
+}
+catch (Exception $e)
+{
+    print_r($e);
+}
 eZExecution::cleanExit();

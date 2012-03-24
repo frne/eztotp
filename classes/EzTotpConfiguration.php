@@ -1,45 +1,25 @@
 <?php
 /**
- * TITLE
+ * EzTotp: Two-way authentication with Google Authenticator for eZPublish
  *
- * @access public
- * @author ymc-frne <frank.neff@ymc.ch>
- * @license ymc standard license <license@ymc.ch>
- * @since 2012/03/21
+ * @package EzTotp
+ * @version 0.1 unstable/development
+ * @author Frank Neff <fneff89@gmail.com>
+ * @license LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html
  */
 
 /**
  * Class EzTotpConfiguration
  */
-class EzTotpConfiguration
+class EzTotpConfiguration extends PropertyOverload
 {
-
-    const MODE_DEVELOPMENT = 0;
-    const MODE_PRODUCTION = 1;
-
-    /**
-     * @var int
-     */
-    private $mode;
-
-    /**
-     * @param string $mode
-     */
-    public function __construct( $mode )
+    public function loadConfiguration()
     {
-        switch ( $mode )
+        $iniInstance = eZINI::instance("eztotp.ini");
+
+        foreach($iniInstance->BlockValues as $key => $value)
         {
-            case "development":
-                $this->mode = self::MODE_DEVELOPMENT;
-                break;
-
-            case "production":
-                $this->mode = self::MODE_PRODUCTION;
-                break;
-
-            default:
-                throw new EzTotpConfigurationException("No valid configuration mode!");
-                break;
+            $this->$key = $value;
         }
     }
 }

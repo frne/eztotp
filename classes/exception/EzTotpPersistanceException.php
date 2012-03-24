@@ -11,7 +11,7 @@
 /**
  * Class EzTotpConfigurationException
  */
-class EzTotpConfigurationException extends Exception implements EzTotpExceptionInterface
+class EzTotpPersistanceException extends Exception implements EzTotpExceptionInterface
 {
     /**
      * @param string $message
@@ -27,7 +27,7 @@ class EzTotpConfigurationException extends Exception implements EzTotpExceptionI
      */
     public function __toString()
     {
-        return "An configuration error has occured. This has been reported to the system administrator...\n" .
+        return "An user error has occured. This has been reported to the system administrator...\n" .
             __CLASS__ .
             ":[{$this->code}]:{$this->message}\n\n\n";
     }

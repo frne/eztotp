@@ -11,8 +11,9 @@
 /**
  * Class EzTotpConfigurationException
  */
-class EzTotpConfigurationException extends Exception implements EzTotpExceptionInterface
+class EzTotpFactoryException extends Exception implements EzTotpExceptionInterface
 {
+
     /**
      * @param string $message
      * @param int $code
@@ -27,7 +28,7 @@ class EzTotpConfigurationException extends Exception implements EzTotpExceptionI
      */
     public function __toString()
     {
-        return "An configuration error has occured. This has been reported to the system administrator...\n" .
+        return "An factory error has occured in factory ". $this->getFile() . ". This has been reported to the system administrator...\n" .
             __CLASS__ .
             ":[{$this->code}]:{$this->message}\n\n\n";
     }
