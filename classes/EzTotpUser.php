@@ -44,49 +44,9 @@ class EzTotpUser extends eZUser
      */
     static function definition()
     {
-        static $definition = array('fields' => array('contentobject_id' => array('name' => 'ContentObjectID',
-            'datatype' => 'integer',
-            'default' => 0,
-            'required' => true,
-            'foreign_class' => 'eZContentObject',
-            'foreign_attribute' => 'id',
-            'multiplicity' => '0..1'),
-            'login' => array('name' => 'Login',
-                'datatype' => 'string',
-                'default' => '',
-                'required' => true),
-            'email' => array('name' => 'Email',
-                'datatype' => 'string',
-                'default' => '',
-                'required' => true),
-            'password_hash' => array('name' => 'PasswordHash',
-                'datatype' => 'string',
-                'default' => '',
-                'required' => true),
-            'password_hash_type' => array('name' => 'PasswordHashType',
-                'datatype' => 'integer',
-                'default' => 1,
-                'required' => true)),
-            'keys' => array('contentobject_id'),
-            'sort' => array('contentobject_id' => 'asc'),
-            'function_attributes' => array('contentobject' => 'contentObject',
-                'groups' => 'groups',
-                'has_stored_login' => 'hasStoredLogin',
-                'original_password' => 'originalPassword',
-                'original_password_confirm' => 'originalPasswordConfirm',
-                'roles' => 'roles',
-                'role_id_list' => 'roleIDList',
-                'limited_assignment_value_list' => 'limitValueList',
-                'is_logged_in' => 'isLoggedIn',
-                'is_enabled' => 'isEnabled',
-                'is_locked' => 'isLocked',
-                'last_visit' => 'lastVisit',
-                'login_count' => 'loginCount',
-                'has_manage_locations' => 'hasManageLocations'),
-            'relations' => array('contentobject_id' => array('class' => 'ezcontentobject',
-                'field' => 'id')),
-            'class_name' => 'EzTotpUser',
-            'name' => 'ezuser');
+        $definition = parent::definition();
+        $definition["class_name"] = "EzTotpUser";
+
         return $definition;
     }
 
