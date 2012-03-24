@@ -1,6 +1,6 @@
 <?php
 /**
- * Test module for the classes
+ * Test module for the class
  *
  * @access public
  * @author ymc-frne <frank.neff@ymc.ch>
