@@ -1,6 +1,6 @@
 <?php
 /**
- * EzTotp: Two-way authentication with Google Authenticator for eZPublish
+ * EzTotp: Two-factor authentication with Google Authenticator for eZPublish
  *
  * @package EzTotp
  * @version 0.1 unstable/development
@@ -11,7 +11,7 @@
 /**
  * Class PropertyOverload
  */
-abstract class PropertyOverloadAbstract
+abstract class EzTotpPropertyOverloadAbstract
 {
     /**
      * @var array

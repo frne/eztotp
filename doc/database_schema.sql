@@ -1,5 +1,5 @@
 /**
- * EzTotp: Two-way authentication with Google Authenticator for eZPublish
+ * EzTotp: Two-factor authentication with Google Authenticator for eZPublish
  *
  * @package EzTotp
  * @version 0.1 unstable/development
