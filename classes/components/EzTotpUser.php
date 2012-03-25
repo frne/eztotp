@@ -89,12 +89,13 @@ class EzTotpUser extends eZUser
         $instance = eZPersistentObject::fetchObject(
             self::definition(),
             null,
-            array( 'LOWER( login )' => strtolower( $login ) ),
+            array('LOWER( login )' => strtolower($login)),
             $asObject
         );
 
-        // TODO: setOtpObject
-        // $instance->setOtpObject(EzTotpUserPersistentObject::fetch($id));
+        $otpObject = EzTotpUserPersistentObject::fetch( $instance->id() );
+
+        $instance->setOtpObject($otpObject);
 
 
         return $instance;

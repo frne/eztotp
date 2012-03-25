@@ -24,8 +24,8 @@ abstract class EzTotpFactoryAbstract
             throw new EzTotpFactoryException("Param factory must be instanceof EzTotpFactory! Please use the EzTotpFactory->load() to get subFactory instance!");
         }
 
-        $this->factory = $factory;
-        $this->config = $factory->getConfig();
+        $this->_factory = $factory;
+        $this->_config = $factory->getConfig();
     }
 
     /**

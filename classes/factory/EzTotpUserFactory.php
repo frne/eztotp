@@ -22,6 +22,11 @@ class EzTotpUserFactory extends EzTotpFactoryAbstract
         return EzTotpUser::fetch($id);
     }
 
+    public function fetchByName($name)
+    {
+        return EzTotpUser::fetchByName($name);
+    }
+
     public function enableTotpAuthentication()
     {
         if(!$this->otpUser instanceof EzTotpUser)

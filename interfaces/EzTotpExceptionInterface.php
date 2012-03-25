@@ -1,11 +1,11 @@
 <?php
 /**
- * EzTotp: Two-way authentication with Google Authenticator for eZPublish
+ * Interface for EzTotp Exceptions
  *
- * @package EzTotp
- * @version 0.1 unstable/development
- * @author Frank Neff <fneff89@gmail.com>
- * @license LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html
+ * @access public
+ * @author ymc-frne <frank.neff@ymc.ch>
+ * @license ymc standard license <license@ymc.ch>
+ * @since 2012/03/21
  */
 
 /**

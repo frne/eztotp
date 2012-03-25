@@ -11,7 +11,7 @@
 /**
  * Class PropertyOverload
  */
-abstract class PropertyOverload
+abstract class PropertyOverloadAbstract
 {
     /**
      * @var array

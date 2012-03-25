@@ -11,7 +11,7 @@
 /**
  * Class EzTotpConfiguration
  */
-class EzTotpConfiguration extends PropertyOverload
+class EzTotpConfiguration extends PropertyOverloadAbstract
 {
     public function loadConfiguration()
     {
