@@ -16,32 +16,32 @@
  */
 class EzTotpAuthentication extends EzTotpAuthenticationHelperAbstract
 {
-    const KEY_REGENRATION = 30; // Interval between key regeneration
     const OTP_LENGTH = 6; // Length of the Token generated
+
+    private $conf;
 
     private $initialisationKey = false;
     private $secretKey = false;
     private $timestamp = false;
 
 
-    public function __construct()
+    public function __construct(EzTotpConfiguration $conf)
     {
-        // TODO: Refactor
+        $this->conf = $conf;
+    }
 
-        /**
-        $initialisationKey = "asludhalsduhadashudöahdal";
-
+    public function setInitialisationSeed($initialisationKey)
+    {
         if (is_string($initialisationKey)) {
             $this->initialisationKey = $initialisationKey;
         }
         else
         {
-            throw new EzTotpAuthenticationException("No valid initialisation key provided!");
+            throw new otpAuthenticationException("No valid initialisation key provided!");
         }
 
         $this->timestamp = $this->get_timestamp();
         $this->secretKey = $this->base32_decode($this->initialisationKey);
-         */
     }
 
     public function getKey()
@@ -56,7 +56,7 @@ class EzTotpAuthentication extends EzTotpAuthenticationHelperAbstract
      **/
     private function get_timestamp()
     {
-        return floor(microtime(true) / self::KEY_REGENRATION);
+        return floor(microtime(true) / $this->conf->base["keyRegenerationInterval"]);
     }
 
 
@@ -76,7 +76,7 @@ class EzTotpAuthentication extends EzTotpAuthenticationHelperAbstract
         $bin_counter = pack('N*', 0) . pack('N*', $counter); // Counter must be 64-bit int
         $hash = hash_hmac('sha1', $bin_counter, $key, true);
 
-        return str_pad($this->oath_truncate($hash), self::OTP_LENGTH, '0', STR_PAD_LEFT);
+        return str_pad($this->oath_truncate($hash), $this->conf->base["keyLength"], '0', STR_PAD_LEFT);
     }
 
     /**
@@ -98,12 +98,16 @@ class EzTotpAuthentication extends EzTotpAuthenticationHelperAbstract
 
         $binarySeed = $this->base32_decode($this->initialisationKey);
 
-        for ($ts = $timeStamp - $window; $ts <= $timeStamp + $window; $ts++)
+        for ($ts = $timeStamp - $this->conf->base["timeShiftTolerance"];
+             $ts <= $timeStamp + $this->conf->base["timeShiftTolerance"];
+             $ts++)
+        {
             if ($this->oath_hotp($binarySeed, $ts) == $key)
+            {
                 return true;
-
+            }
+        }
         return false;
-
     }
 
     /**
@@ -120,6 +124,6 @@ class EzTotpAuthentication extends EzTotpAuthenticationHelperAbstract
                 ((ord($hash[$offset + 1]) & 0xff) << 16) |
                 ((ord($hash[$offset + 2]) & 0xff) << 8) |
                 (ord($hash[$offset + 3]) & 0xff)
-        ) % pow(10, self::OTP_LENGTH);
+        ) % pow(10, $this->conf->base["keyLength"]);
     }
 }

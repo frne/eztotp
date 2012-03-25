@@ -2,5 +2,7 @@
 
 [ModuleSettings]
 ExtensionRepositories[]=eztotp
-ModuleList[]=auth
+ModuleList[]=eztotp
+ModuleList[]=eztotpadmin
+ModuleList[]=dashboard
 */ ?>

@@ -36,11 +36,61 @@ class EzTotpAuthenticationFactory extends EzTotpFactoryAbstract
     /**
      * @param EzTotpAuthentication $authentication
      */
-    public function setAuthentication(EzTotpAuthentication $authentication )
+    public function setAuthentication(EzTotpAuthentication $authentication)
     {
         $this->authentication = $authentication;
     }
 
+    public function authenticate($pass)
+    {
+        if (!$this->user instanceof EzTotpUser) {
+            $message = "No valid user given to " . __CLASS__ .
+                "! Please provide a EzTotpUser object to autenticate using setUser()";
+            throw new EzTotpFactoryException($message);
+        }
+
+        if (!$this->authentication instanceof EzTotpAuthentication) {
+            $message = "No valid authentication given to " . __CLASS__ .
+                "! Please provide a EzTotpAuthentication object to autenticate using setAuthentication()";
+            throw new EzTotpFactoryException($message);
+        }
+
+        // switch user state
+        switch ((int)$this->user->otpState)
+        {
+            case EzTotpConfiguration::USER_STATE_NOOTP:
+                return $this->logIn($this->user, $pass["userPassword"]);
+                break;
+
+            case EzTotpConfiguration::USER_STATE_BLOCKED:
+                return false;
+                break;
+
+            case EzTotpConfiguration::USER_STATE_OTP:
+                // TOTP authentication
+                $this->authentication->setInitialisationSeed($this->user->otpSeed);
+
+                if ($this->authentication->verify($pass["otpKey"])) {
+                    return $this->logIn($this->user, $pass["userPassword"]);
+                }
+
+                // TODO: Logging
+
+                return false;
+                break;
+
+            default:
+                throw new EzTotpAuthenticationException("No valid user state: " . (int)$this->user->otpState);
+                break;
+        }
+
+
+    }
+
+    private function logIn(EzTotpUser $user, $password)
+    {
+        return eZUser::loginUser($user->Login, $password);
+    }
 
 
 }
