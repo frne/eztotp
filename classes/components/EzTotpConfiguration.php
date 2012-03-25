@@ -13,6 +13,10 @@
  */
 class EzTotpConfiguration extends EzTotpPropertyOverloadAbstract
 {
+    const USER_STATE_NOOTP = 0;
+    const USER_STATE_OTP = 1;
+    const USER_STATE_BLOCKED = 2;
+
     public function loadConfiguration()
     {
         $iniInstance = eZINI::instance("eztotp.ini");

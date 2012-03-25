@@ -24,24 +24,23 @@ class EzTotpAuthentication extends EzTotpAuthenticationHelperAbstract
     private $timestamp = false;
 
 
-    public function __construct()
+    public function __construct($initialisationKey)
     {
-        // TODO: Refactor
 
-        /**
-        $initialisationKey = "asludhalsduhadashudöahdal";
+    }
 
+    public function setInitialisationSeed($initialisationKey)
+    {
         if (is_string($initialisationKey)) {
             $this->initialisationKey = $initialisationKey;
         }
         else
         {
-            throw new EzTotpAuthenticationException("No valid initialisation key provided!");
+            throw new otpAuthenticationException("No valid initialisation key provided!");
         }
 
         $this->timestamp = $this->get_timestamp();
         $this->secretKey = $this->base32_decode($this->initialisationKey);
-         */
     }
 
     public function getKey()

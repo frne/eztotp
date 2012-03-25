@@ -10,10 +10,8 @@
 
 class EzTotpLoginUser extends eZUser
 {
-    static function loginUser($login, $password, $authenticationMatch = false)
+    static function loginUser($login, $pass, $authenticationMatch = false)
     {
-        // ugly as hell, but eZPublish wants me to do that
-
         // create configuration
         $configuration = new EzTotpConfiguration();
         $configuration->loadConfiguration();
@@ -24,15 +22,16 @@ class EzTotpLoginUser extends eZUser
         $user = $userFactory->fetchByName($login);
 
         $auth = $factory->load("auth");
-        $authenticationObject = new EzTotpAuthentication();
+        $authenticationObject = new EzTotpAuthentication($configuration);
 
         $auth->setAuthentication($authenticationObject);
         $auth->setUser($user);
+        $authResult = $auth->authenticate($pass);
 
-        var_dump($auth);
+        echo "<h3>";
+        var_dump($authResult);
+        echo "</h3>";
 
-
-        return false;
-
+        return $authResult;
     }
 }
