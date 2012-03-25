@@ -70,11 +70,6 @@ class EzTotpAuthenticationFactory extends EzTotpFactoryAbstract
                 // TOTP authentication
                 $this->authentication->setInitialisationSeed($this->user->otpSeed);
 
-                var_dump(array(
-                    "manualKey" => $pass["otpKey"],
-                    "generatedKey" => $this->authentication->getKey()
-                ));
-
                 if ($this->authentication->verify($pass["otpKey"])) {
                     return $this->logIn($this->user, $pass["userPassword"]);
                 }

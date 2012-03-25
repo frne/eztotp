@@ -28,10 +28,6 @@ class EzTotpLoginUser extends eZUser
         $auth->setUser($user);
         $authResult = $auth->authenticate($pass);
 
-        echo "<h3>";
-        var_dump($authResult);
-        echo "</h3>";
-
         return $authResult;
     }
 }

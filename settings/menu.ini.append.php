@@ -1,26 +1,25 @@
-<?php /* #?ini charset="utf-8"?
+<?php/* #?ini charset="utf-8"?
 
 [NavigationPart]
-Part[eztagsnavigationpart]=eZTotp
+Part[eztotpadminnavigationpart]=eztotpadmin
 
 [TopAdminMenu]
-Tabs[]=eztotp
+Tabs[]=eztotpadmin
 
-[Topmenu_eztags]
-NavigationPartIdentifier=eztotpnavigationpart
-Name=eZ OTP Authentication
-Tooltip=eZ Tags dashboard
+[Topmenu_eztotpadmin]
+NavigationPartIdentifier=eztotpadminnavigationpart
+Name=TOTP Admin
+Tooltip=Google Two Factor Authentication EzTotp
 URL[]
-URL[default]=totp/dashboard
+URL[default]=eztotpadmin/dashboard
 Enabled[]
 Enabled[default]=true
 Enabled[browse]=false
 Enabled[edit]=false
 Shown[]
 Shown[default]=true
-Shown[edit]=true
-Shown[navigation]=true
-Shown[browse]=true
+Shown[edit]=false
+Shown[browser]=false
 
-PolicyList[]=tags/read
-*/ ?>
+*/
+?>
