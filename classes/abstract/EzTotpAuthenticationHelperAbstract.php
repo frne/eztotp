@@ -8,6 +8,12 @@
  * @license LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html
  */
 
+/**
+ * Authentication component class helper
+ *
+ * Based on "Google TOTP Two-factor Authentication for PHP" by Phil
+ * @see http://www.idontplaydarts.com/2011/07/google-totp-two-factor-authentication-for-php/
+ */
 abstract class EzTotpAuthenticationHelperAbstract
 {
     /**

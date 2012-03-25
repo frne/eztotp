@@ -8,6 +8,12 @@
  * @license LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html
  */
 
+/**
+ * Authentication component class
+ *
+ * Based on "Google TOTP Two-factor Authentication for PHP" by Phil
+ * @see http://www.idontplaydarts.com/2011/07/google-totp-two-factor-authentication-for-php/
+ */
 class EzTotpAuthentication extends EzTotpAuthenticationHelperAbstract
 {
     const KEY_REGENRATION = 30; // Interval between key regeneration
