@@ -10,8 +10,8 @@
 
 $Tpl                 = eZTemplate::factory();
 $Result              = array();
-$Result['content']   = $Tpl->fetch( 'design:eztotp/backend/dashboard.tpl' );
-$Result['left_menu'] = 'design:eztotp/backend/left_menu.tpl';
+$Result['content']   = $Tpl->fetch( 'design:backend/setup.tpl' );
+$Result['left_menu'] = 'design:backend/left_menu.tpl';
 $Result['path']      = array(
-                           array( 'url' => false, 'text' => ezpI18n::tr( 'eztotpadmin/dashboard', 'eztotpadmin' ) )
+                           array( 'url' => false, 'text' => ezpI18n::tr( 'eztotpadmin/setup', 'eztotpadmin' ) )
                        );

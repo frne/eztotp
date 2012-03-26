@@ -15,7 +15,12 @@ $ViewList = array(
         'default_navigation_part' => 'eztotpadminnavigationpart',
         'script'                  => 'dashboard.php',
         'params'                  => array()
-    )
+    ),
+    'setup' => array(
+            'default_navigation_part' => 'eztotpadminnavigationpart',
+            'script'                  => 'setup.php',
+            'params'                  => array()
+        )
 );
 
 $FunctionList = array();

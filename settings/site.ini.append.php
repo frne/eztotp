@@ -17,5 +17,6 @@ ExtensionDirectory[]=eztotp
 
 LoginHandler[]
 LoginHandler[]=totplogin
+#LoginHandler[]=standard
 
 */ ?>
