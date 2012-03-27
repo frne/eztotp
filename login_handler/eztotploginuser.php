@@ -21,13 +21,22 @@ class EzTotpLoginUser extends eZUser
         $userFactory = $factory->load("user");
         $user = $userFactory->fetchByName($login);
 
+        if(!$user instanceof EzTotpUser)
+        {
+            // user does not exist
+            return false;
+        }
+
+        // load authentication
         $auth = $factory->load("auth");
         $authenticationObject = new EzTotpAuthentication($configuration);
 
+        // authenticate user
         $auth->setAuthentication($authenticationObject);
         $auth->setUser($user);
         $authResult = $auth->authenticate($pass);
 
+        // return the logged-in user or false
         return $authResult;
     }
 }
