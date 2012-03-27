@@ -69,7 +69,7 @@ class EzTotpUser extends eZUser
             $asObject
         );
 
-        $instance->setOtpObject(EzTotpUserPersistentObject::fetch($id));
+        $instance->setOtpObject(EzTotpUserPersistentObject::fetch($instance->id()));
 
         return $instance;
     }
@@ -93,10 +93,14 @@ class EzTotpUser extends eZUser
             $asObject
         );
 
+        if(!$instance instanceof EzTotpUser)
+        {
+            return null;
+        }
+
         $otpObject = EzTotpUserPersistentObject::fetch( $instance->id() );
 
         $instance->setOtpObject($otpObject);
-
 
         return $instance;
     }
@@ -120,8 +124,7 @@ class EzTotpUser extends eZUser
             $asObject
         );
 
-        // TODO: setOtpObject
-        //$instance->setOtpObject(EzTotpUserPersistentObject::fetch($id));
+        $instance->setOtpObject(EzTotpUserPersistentObject::fetch($instance->id()));
 
         return $instance;
     }

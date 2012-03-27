@@ -21,6 +21,11 @@ class EzTotpLoginUser extends eZUser
         $userFactory = $factory->load("user");
         $user = $userFactory->fetchByName($login);
 
+        if(!$user instanceof EzTotpUser)
+        {
+            return false;
+        }
+
         $auth = $factory->load("auth");
         $authenticationObject = new EzTotpAuthentication($configuration);
 
