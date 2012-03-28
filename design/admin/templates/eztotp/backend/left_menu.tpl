@@ -1,27 +1,14 @@
-<div id="leftmenu">
-    <div id="leftmenu-design">
-        <div class="box-header">
-            <div class="box-ml">
-                <h4>Dashboard</h4>
-            </div>
-        </div>
-
-        <div class="box-bc">
-            <div class="box-ml">
-                <div class="box-content">
-
-                    <ul class="leftmenu-items">
-
-                        <li>
-                            <div>
-                                <a href="#">To be done</a>
-                            </div>
-                        </li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </div>
+<div class="well sidebar-nav totp-left-menu">
+    <ul class="nav nav-list">
+        <li class="active"><a href="#">Dashboard</a></li>
+        <li class="nav-header">User management</li>
+        <li><a href="#">Active Users</a></li>
+        <li><a href="#">Blocked Users</a></li>
+        <li class="nav-header">Logs</li>
+        <li><a href="#">Error Log</a></li>
+        <li><a href="#">Access Log</a></li>
+        <li class="nav-header">Settings</li>
+        <li><a href="#">TOTP Settings</a></li>
+        <li><a href="#">Setup</a></li>
+    </ul>
 </div>
-
-<hr class="hide"/>
