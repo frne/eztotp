@@ -31,7 +31,7 @@ abstract class EzTotpAuthenticationHelperAbstract
 
     /**
      * Decodes a base32 string into a binary string.
-     **/
+     */
     protected static function base32_decode($b32)
     {
         $b32 = strtoupper($b32);
@@ -62,7 +62,7 @@ abstract class EzTotpAuthenticationHelperAbstract
     /**
      * Generates a 16 digit secret key in base32 format
      * @return string
-     **/
+     */
     public static function generate_secret_key($length = 30)
     {
         $b32 = "234567QWERTYUIOPASDFGHJKLZXCVBNM";
@@ -73,6 +73,4 @@ abstract class EzTotpAuthenticationHelperAbstract
 
         return $s;
     }
-
-
 }

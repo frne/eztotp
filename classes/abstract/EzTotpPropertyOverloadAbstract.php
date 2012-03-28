@@ -74,6 +74,9 @@ abstract class EzTotpPropertyOverloadAbstract
         unset( $this->data[$key] );
     }
 
+    /**
+     * @return array
+     */
     public function getData()
     {
         return $this->data;

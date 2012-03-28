@@ -10,8 +10,14 @@
 
 abstract class EzTotpFactoryAbstract
 {
+    /**
+     * @var EzTotpFactory
+     */
     protected $_factory;
 
+    /**
+     * @var EzTotpConfiguration
+     */
     protected $_config;
 
     /**

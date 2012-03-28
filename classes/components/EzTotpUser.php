@@ -128,6 +128,4 @@ class EzTotpUser extends eZUser
 
         return $instance;
     }
-
-
 }

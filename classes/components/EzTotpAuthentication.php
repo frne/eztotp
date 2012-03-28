@@ -16,20 +16,38 @@
  */
 class EzTotpAuthentication extends EzTotpAuthenticationHelperAbstract
 {
-    const OTP_LENGTH = 6; // Length of the Token generated
-
+    /**
+     * @var EzTotpConfiguration
+     */
     private $conf;
 
+    /**
+     * @var string
+     */
     private $initialisationKey = false;
+
+    /**
+     * @var string
+     */
     private $secretKey = false;
+
+    /**
+     * @var int
+     */
     private $timestamp = false;
 
-
+    /**
+     * @param EzTotpConfiguration $conf
+     */
     public function __construct(EzTotpConfiguration $conf)
     {
         $this->conf = $conf;
     }
 
+    /**
+     * @param int $initialisationKey
+     * @throws otpAuthenticationException
+     */
     public function setInitialisationSeed($initialisationKey)
     {
         if (is_string($initialisationKey)) {
@@ -44,6 +62,9 @@ class EzTotpAuthentication extends EzTotpAuthenticationHelperAbstract
         $this->secretKey = $this->base32_decode($this->initialisationKey);
     }
 
+    /**
+     * @return string
+     */
     public function getKey()
     {
         return $this->oath_hotp($this->secretKey, $this->timestamp);
@@ -67,7 +88,7 @@ class EzTotpAuthentication extends EzTotpAuthenticationHelperAbstract
      * @param binary $key - Secret key in binary form.
      * @param integer $counter - Timestamp as returned by get_timestamp.
      * @return string
-     **/
+     */
     private function oath_hotp($key, $counter)
     {
         if (strlen($key) < 8)
@@ -88,7 +109,7 @@ class EzTotpAuthentication extends EzTotpAuthenticationHelperAbstract
      * @param integer $window
      * @param boolean $useTimeStamp
      * @return boolean
-     **/
+     */
     public function verify($key, $window = 4, $useTimeStamp = true)
     {
 
@@ -114,7 +135,7 @@ class EzTotpAuthentication extends EzTotpAuthenticationHelperAbstract
      * Extracts the OTP from the SHA1 hash.
      * @param binary $hash
      * @return integer
-     **/
+     */
     private function oath_truncate($hash)
     {
         $offset = ord($hash[19]) & 0xf;

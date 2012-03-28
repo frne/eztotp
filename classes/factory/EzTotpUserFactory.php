@@ -10,29 +10,49 @@
 
 class EzTotpUserFactory extends EzTotpFactoryAbstract
 {
+    /**
+     * @var EzTotpUser
+     */
     private $otpUser;
 
+    /**
+     * Nothing to do
+     */
     protected function init()
     {
 
     }
 
+    /**
+     * @param int $id
+     * @return EzTotpUser|null
+     */
     public function getUserById(int $id)
     {
         return EzTotpUser::fetch($id);
     }
 
+    /**
+     * @param string $name
+     * @return EzTotpUser|null
+     */
     public function fetchByName($name)
     {
         return EzTotpUser::fetchByName($name);
     }
 
+    /**
+     * @deprecated
+     * @throws EzTotpFactoryException
+     */
     public function enableTotpAuthentication()
     {
         if(!$this->otpUser instanceof EzTotpUser)
         {
             throw new EzTotpFactoryException("No valid user! Please use " . __CLASS__ . "::setUserById first!");
         }
+
+        $this->otpUser->enableOtpAuth();
     }
 
 }
