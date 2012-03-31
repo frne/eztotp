@@ -27,8 +27,9 @@ class EzTotpUserFactory extends EzTotpFactoryAbstract
      * @param int $id
      * @return EzTotpUser|null
      */
-    public function getUserById(int $id)
+    public function getUserById($id)
     {
+        $id = (int)$id;
         return EzTotpUser::fetch($id);
     }
 
@@ -47,12 +48,75 @@ class EzTotpUserFactory extends EzTotpFactoryAbstract
      */
     public function enableTotpAuthentication()
     {
-        if(!$this->otpUser instanceof EzTotpUser)
-        {
+        if (!$this->otpUser instanceof EzTotpUser) {
             throw new EzTotpFactoryException("No valid user! Please use " . __CLASS__ . "::setUserById first!");
         }
 
         $this->otpUser->enableOtpAuth();
+    }
+
+    public function resetTotpSeed($user)
+    {
+        if(is_int($user))
+        {
+            $user = $this->getUserById($user);
+        }
+
+        if(! $user instanceof EzTotpUser)
+        {
+            throw new EzTotpUserException("No valid user given!");
+        }
+
+
+    }
+
+    public function fetchUserListByState($state, $limit = false, $offset = false)
+    {
+        if (($state !== EzTotpConfiguration::USER_STATE_OTP) and
+            ($state !== EzTotpConfiguration::USER_STATE_NOOTP) and
+                ($state !== EzTotpConfiguration::USER_STATE_BLOCKED)
+        ) {
+            throw new EzTotpUserException("Invalid user state!");
+        }
+
+        // set parameters
+        $parameters = array();
+        if ($offset) {
+            $parameters['offset'] = (int)$offset;
+        }
+        if ($limit) {
+            $parameters['limit'] = (int)$limit;
+        }
+
+        // set query
+        $sql = "SELECT *
+        FROM eztotp_user
+        WHERE state = '" . $state . "'";
+
+        // database transaction
+        $db = eZDB::instance();
+        $rows = $db->arrayQuery($sql, $parameters);
+        $list = array();
+        foreach ($rows as $row)
+        {
+            $persistantObject = new EzTotpUserPersistentObject($row);
+            $list[] = $this->eztotpUserPersistantObjectToEzTotpUser($persistantObject);
+        }
+
+        return $list;
+    }
+
+    private function eztotpUserPersistantObjectToEzTotpUser(EzTotpUserPersistentObject $persistantObject)
+    {
+        if ((!$persistantObject instanceof EzTotpUserPersistentObject) or
+            (empty($persistantObject->EzUserId))
+        ) {
+            throw new EzTotpPersistanceException("Invalid persistant Object given or something wrong with the database!");
+        }
+
+        $userId = (int)$persistantObject->EzUserId;
+
+        return $this->getUserById($userId);
     }
 
 }

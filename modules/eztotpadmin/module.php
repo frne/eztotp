@@ -20,7 +20,16 @@ $ViewList = array(
             'default_navigation_part' => 'eztotpadminnavigationpart',
             'script'                  => 'setup.php',
             'params'                  => array()
-        )
+        ),
+    'users' => array(
+                'default_navigation_part' => 'eztotpadminnavigationpart',
+                'script'                  => 'users.php',
+                'params'                  => array("type")
+            ),
+    'edituser' => array(
+                    'script'                  => 'edituser.php',
+                    'params'                  => array("user_id", "action")
+                )
 );
 
 $FunctionList = array();

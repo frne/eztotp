@@ -16,7 +16,7 @@ class EzTotpUserPersistentObject extends eZPersistentObject
     /**
      * @var int
      */
-    protected $EzUserId;
+    public $EzUserId;
 
     /**
      * @var string
@@ -65,7 +65,7 @@ class EzTotpUserPersistentObject extends eZPersistentObject
     /**
      * @param array $row
      */
-    protected function __construct($row = array())
+    public function __construct($row = array())
     {
         parent::__construct($row);
     }

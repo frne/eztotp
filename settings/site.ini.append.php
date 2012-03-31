@@ -1,7 +1,7 @@
 <?php /* #?ini charset="utf-8"?
 
 [TemplateSettings]
-ExtensionAutoloadPath[]=ezotp
+ExtensionAutoloadPath[]=eztotp
 
 [RegionalSettings]
 TranslationExtensions[]=eztotp

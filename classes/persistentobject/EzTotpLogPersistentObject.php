@@ -11,7 +11,7 @@
 /**
  * Class EzTotpUserPersistentObject
  */
-class EzTotpUserPersistentObject extends eZPersistentObject
+class EzTotpLogPersistentObject extends eZPersistentObject
 {
     /**
      * @var int

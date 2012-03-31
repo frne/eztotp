@@ -1,3 +1,6 @@
+{def $adminPagePart="dashboard"}
+
+
 <h1 class="totp">
     Dashboard
 </h1>
@@ -23,3 +26,7 @@
         id lorem gravida fringilla.
     </p>
 </div>
+
+<script type="text/javascript">
+    jQuery("li[rel='{$adminPagePart}']").addClass("active");
+</script>

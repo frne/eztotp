@@ -31,6 +31,10 @@ $ViewList['login'] = array(
                                                          'UserRedirectURI' => 'RedirectURI' ) ),
     'params' => array( ) );
 
+$ViewList['qr'] = array(
+    'functions' => array( 'qr' ),
+    'script' => 'qr.php',
+    'params' => array( "userId" ) );
 
 /**
 $ViewList['elevation_detail'] = array(
