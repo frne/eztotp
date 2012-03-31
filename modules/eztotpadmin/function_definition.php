@@ -17,7 +17,7 @@ $FunctionList['user_list'] = array( 'name' => 'user_list',
                                  'parameter_type' => 'standard',
                                  'parameters' => array( array( 'name' => 'type',
                                                                'type' => 'string',
-                                                               'required' => true,
+                                                               'required' => false,
                                                                'default' => '' )
                                  ) );
 

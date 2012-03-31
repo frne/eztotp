@@ -9,19 +9,10 @@
  */
 
 $Tpl                 = eZTemplate::factory();
+$Tpl->setVariable("userType", $Params["type"]);
 $Result              = array();
 $Result['left_menu'] = 'design:eztotp/backend/left_menu.tpl';
 $Result['path']      = array(
                            array( 'url' => false, 'text' => ezpI18n::tr( 'eztotpadmin/users', 'eztotpadmin' ) )
                        );
-
-switch($Params["type"])
-{
-    case "blocked":
-            $Result['content']   = $Tpl->fetch( 'design:eztotp/backend/usersBlocked.tpl' );
-            break;
-    case "active":
-    default:
-        $Result['content']   = $Tpl->fetch( 'design:eztotp/backend/usersActive.tpl' );
-        break;
-}
+$Result['content']   = $Tpl->fetch( 'design:eztotp/backend/users.tpl' );

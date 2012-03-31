@@ -106,6 +106,25 @@ class EzTotpUserFactory extends EzTotpFactoryAbstract
         return $list;
     }
 
+    public function fetchUserList($limit = false, $offset = false)
+        {
+
+            $userContentObjects = eZUser::fetchContentList();
+
+            $list = array();
+            foreach ($userContentObjects as $userContentObject)
+            {
+                if($userContentObject["id"] == eZUser::anonymousId())
+                {
+                    continue;
+                }
+
+                $list[] = $this->getUserById($userContentObject["id"]);
+            }
+
+            return $list;
+        }
+
     private function eztotpUserPersistantObjectToEzTotpUser(EzTotpUserPersistentObject $persistantObject)
     {
         if ((!$persistantObject instanceof EzTotpUserPersistentObject) or

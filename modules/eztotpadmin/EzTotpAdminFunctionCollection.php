@@ -27,14 +27,19 @@ class EzTotpAdminFunctionCollection
                 break;
 
             default:
-                throw new EzTotpUserException("Provide type 'active', 'blocked' or 'inactive'!");
+                $state = false;
                 break;
         }
-
-
-
         $list = array();
-        $userObjectlist = $userFactory->fetchUserListByState($state);
+
+        if($state !== false)
+        {
+            $userObjectlist = $userFactory->fetchUserListByState($state);
+        }
+        else
+        {
+            $userObjectlist = $userFactory->fetchUserList();
+        }
         foreach ($userObjectlist as $key => $user)
         {
             $list[] = self::mapEztotpUserObjectToArray($user);

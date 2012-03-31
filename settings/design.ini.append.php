@@ -4,11 +4,12 @@
 DesignExtensions[]=eztotp
 
 [JavaScriptSettings]
-JavaScriptList[]=dropdown.bootstrap.js
+JavaScriptList[]=bootstrap.min.js
 BackendJavaScriptList[]=jquery.js
-BackendJavaScriptList[]=dropdown.bootstrap.js
+BackendJavaScriptList[]=bootstrap.min.js
 
 [StylesheetSettings]
+BackendCSSFileList[]=bootstrap.css
 BackendCSSFileList[]=totp.css
 BackendCSSFileList[]=system-override.css
 */ ?>
