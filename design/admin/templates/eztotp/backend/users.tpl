@@ -37,12 +37,12 @@
             <th>Login</th>
             <th>E-Mail</th>
             <th>Groups</th>
-            <th>OTP State</th>
-            <th>OTP Account Data</th>
+            <th>TOTP State</th>
+            <th>TOTP Account Data</th>
             <th>Edit</th>
         </tr>
     {foreach $userList as $user}
-        <tr>
+        <tr class="userListItem_{$user["id"]}">
             <td class="id">
                 {$user["id"]}
             </td>
@@ -73,8 +73,9 @@
 
             </td>
             <td class="editUser">
-                {if $user["otpSeed"]|eq("")}
-                    <a href="#" class="btn btn-primary">Enable</a>
+                {if or( $user["otpState"]|eq(""), $user["otpState"]|eq(0) )}
+                    <button class="btn btn-primary" data-toggle="modal" href="#enableUserModal_{$user["id"]}">Enable</button>
+                    {include uri='design:eztotp/parts/enable_user_modal.tpl' user_object=$user}
                 {else}
                     <div class="btn-group">
                         <button class="btn dropdown-toggle" data-toggle="dropdown">Action <span class="caret"></span>

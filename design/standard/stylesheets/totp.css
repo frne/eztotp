@@ -2,3 +2,8 @@ h1.totp
 {
     margin: 0;
 }
+
+.modal .actionResult
+{
+    display: none;
+}

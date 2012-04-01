@@ -2,5 +2,6 @@
 
 [ModuleSettings]
 ExtensionRepositories[]=eztotp
-ModuleList[]=eztotp
+ModuleList[]=eztotpadmin
+ModuleList[]=eztotpadminaction
 */ ?>

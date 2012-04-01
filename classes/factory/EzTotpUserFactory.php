@@ -57,13 +57,11 @@ class EzTotpUserFactory extends EzTotpFactoryAbstract
 
     public function resetTotpSeed($user)
     {
-        if(is_int($user))
-        {
+        if (is_int($user)) {
             $user = $this->getUserById($user);
         }
 
-        if(! $user instanceof EzTotpUser)
-        {
+        if (!$user instanceof EzTotpUser) {
             throw new EzTotpUserException("No valid user given!");
         }
 
@@ -88,6 +86,7 @@ class EzTotpUserFactory extends EzTotpFactoryAbstract
             $parameters['limit'] = (int)$limit;
         }
 
+
         // set query
         $sql = "SELECT *
         FROM eztotp_user
@@ -97,6 +96,11 @@ class EzTotpUserFactory extends EzTotpFactoryAbstract
         $db = eZDB::instance();
         $rows = $db->arrayQuery($sql, $parameters);
         $list = array();
+
+        if ($state === EzTotpConfiguration::USER_STATE_NOOTP) {
+            $list = $this->fetchInactiveUserList();
+        }
+
         foreach ($rows as $row)
         {
             $persistantObject = new EzTotpUserPersistentObject($row);
@@ -107,23 +111,58 @@ class EzTotpUserFactory extends EzTotpFactoryAbstract
     }
 
     public function fetchUserList($limit = false, $offset = false)
+    {
+
+        $userContentObjects = eZUser::fetchContentList();
+
+        $list = array();
+        foreach ($userContentObjects as $userContentObject)
         {
-
-            $userContentObjects = eZUser::fetchContentList();
-
-            $list = array();
-            foreach ($userContentObjects as $userContentObject)
-            {
-                if($userContentObject["id"] == eZUser::anonymousId())
-                {
-                    continue;
-                }
-
-                $list[] = $this->getUserById($userContentObject["id"]);
+            if ($userContentObject["id"] == eZUser::anonymousId()) {
+                continue;
             }
 
-            return $list;
+            $list[] = $this->getUserById($userContentObject["id"]);
         }
+
+        return $list;
+    }
+
+    public function fetchInactiveUserList($limit = false, $offset = false)
+    {
+        // set parameters
+        $parameters = array();
+        if ($offset) {
+            $parameters['offset'] = (int)$offset;
+        }
+        if ($limit) {
+            $parameters['limit'] = (int)$limit;
+        }
+
+        // set query
+        $sql = "SELECT * FROM ezuser
+            WHERE contentobject_id NOT
+            IN (
+              SELECT ezuser_id FROM eztotp_user
+            )";
+
+        // database transaction
+        $db = eZDB::instance();
+        $rows = $db->arrayQuery($sql, $parameters);
+        $list = array();
+        foreach ($rows as $row)
+        {
+            $ezUser = new EzUser($row);
+
+            if ($ezUser->id() == eZUser::anonymousId()) {
+                continue;
+            }
+
+            $list[] = $this->getUserById($ezUser->id());
+        }
+
+        return $list;
+    }
 
     private function eztotpUserPersistantObjectToEzTotpUser(EzTotpUserPersistentObject $persistantObject)
     {

@@ -55,8 +55,7 @@ class EzTotpUserPersistentObject extends eZPersistentObject
                 )
             ),
             "function_attributes" => array(),
-            "increment_key" => "id",
-            "keys" => array("id", "ezuser_id"),
+            "keys" => array("ezuser_id"),
             "class_name" => __CLASS__,
             "name" => "eztotp_user"
         );
@@ -109,11 +108,18 @@ class EzTotpUserPersistentObject extends eZPersistentObject
      * @return EzTotpUserPersistentObject
      * @throws EzTotpPersistanceException
      */
-    private static function create( $ezUserId, $state = 1, $otpSeed)
+    public static function create( $ezUserId, $state = EzTotpConfiguration::USER_STATE_OTP, $otpSeed)
     {
         if(!is_string($otpSeed) or strlen($otpSeed) < 20)
         {
             throw new EzTotpPersistanceException("Invalid initialSeed given. Cannot create persistent object.");
+        }
+
+        $checkExistingObject = self::fetch($ezUserId);
+
+        if(!is_null($checkExistingObject->EzUserId))
+        {
+            throw new EzTotpPersistanceException("Object already exists!");
         }
 
         $row = array(
