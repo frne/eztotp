@@ -7,3 +7,9 @@ h1.totp
 {
     display: none;
 }
+
+.totp .table span.label
+{
+    width: 65px;
+    display: block;
+}
