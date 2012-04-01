@@ -59,19 +59,19 @@ class EzTotpUserOperator
         switch ((int)$operatorValue)
         {
             case EzTotpConfiguration::USER_STATE_OTP:
-                return "Active";
+                return '<span class="label label-success">active</span>';
                 break;
 
             case EzTotpConfiguration::USER_STATE_NOOTP:
-                return "Inactive";
+                return '<span class="label label-warning">inactive</span>';
                 break;
 
             case EzTotpConfiguration::USER_STATE_BLOCKED:
-                return "Blocked";
+                return '<span class="label label-important">blocked</span>';
                 break;
 
             default:
-                return "No State";
+                return '<span class="label label-success">no state</span>';
                 break;
         }
     }
