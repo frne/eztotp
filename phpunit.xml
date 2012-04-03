@@ -19,5 +19,8 @@
         <testsuite name="EzTotpFileTests">
             <directory suffix=".php">tests/files</directory>
         </testsuite>
+        <testsuite name="EzTotpOperatorsTests">
+            <directory suffix=".php">tests/operators</directory>
+        </testsuite>
     </testsuites>
 </phpunit>
