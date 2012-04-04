@@ -11,7 +11,11 @@
 */
 -->
 
-<phpunit backupGlobals="false" backupStaticAttributes="false" syntaxCheck="false">
+<phpunit backupGlobals="false"
+         backupStaticAttributes="false"
+         syntaxCheck="false"
+         bootstrap="./tests/phpUnitBootstrap.php"
+         colors="true">
     <testsuites>
         <testsuite name="EzTotpClassTests">
             <directory suffix=".php">tests/classes</directory>
