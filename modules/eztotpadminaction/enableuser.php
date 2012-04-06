@@ -11,8 +11,14 @@
 $result = array();
 
 try {
+    // get ini
+    $ini = eZINI::instance("eztotp.ini");
+
+    // create config
     $config = new EzTotpConfiguration();
-    $config->loadConfiguration();
+    $config->loadConfiguration($ini);
+
+    // create factory
     $factory = new EzTotpFactory($config);
     $userFactory = $factory->load("user");
 

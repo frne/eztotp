@@ -39,17 +39,22 @@ class EzTotpConfigurationTest extends PHPUnit_Framework_TestCase
 
     public function testLoadConfiguration()
     {
-        $this->object->loadConfiguration();
+        $ini = new eZINI( "eztotp.ini",'extension/eztotp/settings', null, null, true );
+        $ini->resetOverrideDirs();
+        $ini->resetGlobalOverrideDirs();
+        $ini->load(true);
+
+        $this->object->loadConfiguration($ini);
     }
 
     public function testConfigurationArray()
     {
-        $ini = eZINI::instance("eztotp.ini", __DIR__ . "../../settings/");
+        $ini = new eZINI( "eztotp.ini",'extension/eztotp/settings', null, null, true );
+        $ini->resetOverrideDirs();
+        $ini->resetGlobalOverrideDirs();
+        $ini->load(true);
 
-        var_dump($ini);
-
-
-        $this->object->loadConfiguration();
+        $this->object->loadConfiguration($ini);
         $config = $this->object->getData();
         $this->assertTrue(is_array($config));
         $this->assertTrue(count($config) > 0);

@@ -17,8 +17,13 @@ class EzTotpAuthenticationTest extends PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
+        $ini = new eZINI("eztotp.ini", 'extension/eztotp/settings', null, null, true);
+        $ini->resetOverrideDirs();
+        $ini->resetGlobalOverrideDirs();
+        $ini->load(true);
+
         $config = new EzTotpConfiguration();
-        $config->loadConfiguration();
+        $config->loadConfiguration($ini);
         $this->object = new EzTotpAuthentication($config);
     }
 
@@ -36,9 +41,9 @@ class EzTotpAuthenticationTest extends PHPUnit_Framework_TestCase
      *
     public function testSetInitialisationSeed()
     {
-        $this->object->setInitialisationSeed("SHNDJGTHNOTHGNDGETOGADRHGOPTHB");
-        $key = $this->object->getKey();
-        $this->assertFalse(empty($key));
+    $this->object->setInitialisationSeed("SHNDJGTHNOTHGNDGETOGADRHGOPTHB");
+    $key = $this->object->getKey();
+    $this->assertFalse(empty($key));
     }*/
 
     /**
@@ -60,4 +65,5 @@ class EzTotpAuthenticationTest extends PHPUnit_Framework_TestCase
 
     }
 }
+
 ?>

@@ -13,10 +13,12 @@ echo "<pre>";
 // wire up for eZTotop
 
 try {
+    // get ini
+    $ini = eZINI::instance("eztotp.ini");
+
     // create configuration
     $configuration = new EzTotpConfiguration();
-    $configuration->loadConfiguration();
-
+    $configuration->loadConfiguration($ini);
 
 
     // create factory

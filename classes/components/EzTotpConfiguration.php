@@ -23,9 +23,8 @@ class EzTotpConfiguration extends EzTotpPropertyOverloadAbstract
     /**
      * Loads configuration from INI-File
      */
-    public function loadConfiguration()
+    public function loadConfiguration(eZINI $iniInstance)
     {
-        $iniInstance = eZINI::instance("eztotp.ini");
 
         foreach($iniInstance->BlockValues as $key => $value)
         {

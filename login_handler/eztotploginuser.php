@@ -12,9 +12,12 @@ class EzTotpLoginUser extends eZUser
 {
     static function loginUser($login, $pass, $authenticationMatch = false)
     {
+        // get ini
+        $ini = eZINI::instance("eztotp.ini");
+
         // create configuration
         $configuration = new EzTotpConfiguration();
-        $configuration->loadConfiguration();
+        $configuration->loadConfiguration($ini);
 
         // create user
         $factory = new EzTotpFactory($configuration);

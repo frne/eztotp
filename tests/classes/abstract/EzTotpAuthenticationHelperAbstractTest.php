@@ -17,8 +17,13 @@ class EzTotpAuthenticationHelperAbstractTest extends PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
+        $ini = new eZINI("eztotp.ini", 'extension/eztotp/settings', null, null, true);
+        $ini->resetOverrideDirs();
+        $ini->resetGlobalOverrideDirs();
+        $ini->load(true);
+
         $config = new EzTotpConfiguration();
-        $config->loadConfiguration();
+        $config->loadConfiguration($ini);
         $this->object = new EzTotpAuthentication($config);
     }
 

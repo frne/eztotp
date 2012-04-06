@@ -57,9 +57,12 @@ class EzTotpAdminFunctionCollection
 
     private static function getFactory()
     {
+        // get ini
+        $ini = eZINI::instance("eztotp.ini");
+
         // load configuration
         $config = new EzTotpConfiguration();
-        $config->loadConfiguration();
+        $config->loadConfiguration($ini);
 
         // create factory
         return new EzTotpFactory($config);
