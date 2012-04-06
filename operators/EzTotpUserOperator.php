@@ -31,15 +31,11 @@ class EzTotpUserOperator
         switch ($operatorName)
         {
             case 'eztotp_user_state':
-                {
                 $operatorValue = $this->getUserState($operatorValue);
-                }
                 break;
 
             default:
-                {
-                $operatorValue = 'eztotp_user_state';
-                }
+                throw new RuntimeException("No valid operator name!");
                 break;
         }
     }

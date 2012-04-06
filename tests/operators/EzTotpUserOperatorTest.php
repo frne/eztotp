@@ -63,19 +63,30 @@ class EzTotpUserOperatorTest extends PHPUnit_Framework_TestCase
      */
     public function testModify()
     {
-        $value = array(0,1,2,99);
+        $value = array(0, 1, 2, 99);
 
         $this->object->modify(null, "eztotp_user_state", null, null, null, $value[0], null);
         $this->assertSame($value[0], "<span class=\"label label-warning\">inactive</span>");
 
         $this->object->modify(null, "eztotp_user_state", null, null, null, $value[1], null);
-        $this->assertSame($value[1],'<span class="label label-success">active</span>');
+        $this->assertSame($value[1], '<span class="label label-success">active</span>');
 
         $this->object->modify(null, "eztotp_user_state", null, null, null, $value[2], null);
         $this->assertSame($value[2], '<span class="label label-important">blocked</span>');
 
         $this->object->modify(null, "eztotp_user_state", null, null, null, $value[3], null);
         $this->assertSame($value[3], '<span class="label label-warning">no state</span>');
+
+        try{
+            $this->object->modify(null, "", null, null, null, $value[0], null);
+            $result = false;
+        }
+        catch(Exception $e)
+        {
+            $result = true;
+        }
+
     }
 }
+
 ?>
