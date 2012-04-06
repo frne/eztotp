@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="EzTotp" default="build" basedir=".">
+
+    <condition property="script-suffix" value=".bat" else="">
+        <os family="windows"/>
+    </condition>
+
+    <target name="getProps">
+
+        <echo message="---- Build Properties ----"/>
+        <echo message=""/>
+
+
+        <echo message="OS is ${os.name}"/>
+        <echo message="Basedir is ${basedir}"/>
+        <echo message="Property file is ${basedir}/build/ant.properties"/>
+
+        <echo message=""/>
+        <echo message="---- eventManager Properties ----"/>
+        <echo message=""/>
+
+    </target>
+
+    <target name="phpunit">
+        <exec dir="${basedir}" executable="phpunit${script-suffix}" failonerror="true">
+            <arg line="--tap"/>
+        </exec>
+    </target>
+
+    <target name="configure" depends="phpunit">
+        <replace dir="${basedir}" token="${build.version}" value="${build.version}"/>
+
+    </target>
+
+    <target name="buildPreparation" depends="clean">
+        <mkdir dir="${basedir}/build/PHPUnit"/>
+    </target>
+
+    <target name="clean">
+        <delete dir="${basedir}/build/PHPUnit"/>
+    </target>
+
+
+    <target name="build" depends="getProps,buildPreparation,configure"/>
+</project>

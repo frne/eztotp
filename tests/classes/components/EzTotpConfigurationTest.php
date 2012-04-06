@@ -37,9 +37,13 @@ class EzTotpConfigurationTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(is_int($staticClassName::USER_STATE_BLOCKED));
     }
 
+    /**
+     * @covers EzTotpConfiguration::loadConfiguration
+     * @covers EzTotpPropertyOverloadAbstract::__set
+     */
     public function testLoadConfiguration()
     {
-        $ini = new eZINI( "eztotp.ini",'extension/eztotp/settings', null, null, true );
+        $ini = new eZINI("eztotp.ini", 'extension/eztotp/settings', null, null, true);
         $ini->resetOverrideDirs();
         $ini->resetGlobalOverrideDirs();
         $ini->load(true);
@@ -47,9 +51,12 @@ class EzTotpConfigurationTest extends PHPUnit_Framework_TestCase
         $this->object->loadConfiguration($ini);
     }
 
+    /**
+     * @covers EzTotpPropertyOverloadAbstract::getData
+     */
     public function testConfigurationArray()
     {
-        $ini = new eZINI( "eztotp.ini",'extension/eztotp/settings', null, null, true );
+        $ini = new eZINI("eztotp.ini", 'extension/eztotp/settings', null, null, true);
         $ini->resetOverrideDirs();
         $ini->resetGlobalOverrideDirs();
         $ini->load(true);
@@ -60,4 +67,5 @@ class EzTotpConfigurationTest extends PHPUnit_Framework_TestCase
         $this->assertTrue(count($config) > 0);
     }
 }
+
 ?>

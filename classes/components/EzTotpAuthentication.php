@@ -46,7 +46,7 @@ class EzTotpAuthentication extends EzTotpAuthenticationHelperAbstract
 
     /**
      * @param int $initialisationKey
-     * @throws otpAuthenticationException
+     * @throws EzTotpAuthenticationException
      */
     public function setInitialisationSeed($initialisationKey)
     {
@@ -55,7 +55,7 @@ class EzTotpAuthentication extends EzTotpAuthenticationHelperAbstract
         }
         else
         {
-            throw new otpAuthenticationException("No valid initialisation key provided!");
+            throw new EzTotpAuthenticationException("No valid initialisation key provided!");
         }
 
         $this->timestamp = $this->get_timestamp();

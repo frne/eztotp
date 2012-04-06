@@ -10,4 +10,8 @@
 
 set_time_limit( 0 );
 
-require_once("phpUnitAutoloader.php");
+// run unit test in the eZPublish root
+chdir(getcwd() . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR . ".." . DIRECTORY_SEPARATOR);
+
+// autoload ez_kernel
+require_once("autoload.php");

@@ -11,24 +11,23 @@
 */
 -->
 
-<phpunit backupGlobals="false"
-         backupStaticAttributes="false"
-         syntaxCheck="false"
-         bootstrap="./tests/phpUnitBootstrap.php"
+<phpunit bootstrap="./tests/phpUnitBootstrap.php"
          colors="true">
     <testsuites>
         <testsuite name="EzTotpClassTests">
-            <directory suffix=".php">tests/classes</directory>
+            <directory suffix="Test.php">tests/classes</directory>
         </testsuite>
         <testsuite name="EzTotpFileTests">
-            <directory suffix=".php">tests/files</directory>
+            <directory suffix="Test.php">tests/files</directory>
         </testsuite>
         <testsuite name="EzTotpOperatorsTests">
-            <directory suffix=".php">tests/operators</directory>
+            <directory suffix="Test.php">tests/operators</directory>
         </testsuite>
     </testsuites>
     <logging>
-        <log type="coverage-html" target="doc/PHPUnit/coverage" charset="UTF-8" />
-        <log type="testdox-html" target="doc/PHPUnit/testdox.html"/>
+        <log type="coverage-html" target="build/PHPUnit/coverage" charset="UTF-8" />
+        <log type="testdox-html" target="build/PHPUnit/testlog.html"/>
+        <log type="tap" target="build/PHPUnit/testlog.tap"/>
+        <log type="log-metrix" target="build/PHPUnit/logmetrix.xml"/>
     </logging>
 </phpunit>

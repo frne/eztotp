@@ -31,7 +31,7 @@ class EzTotpUser extends eZUser
     /**
      * @param EzTotpUserPersistentObject $object
      */
-    public function setOtpObject($object)
+    public function setOtpObject(EzTotpUserPersistentObject $object)
     {
         $this->otpObject = $object;
         $this->otpSeed = $object->OtpSeed;
@@ -76,7 +76,7 @@ class EzTotpUser extends eZUser
 
     /**
      * @static
-     * @param int $id
+     * @param int $login
      * @param bool $asObject
      * @return EzTotpUser|null
      */

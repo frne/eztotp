@@ -10,10 +10,6 @@
 
 class EzTotpUserOperator
 {
-    function __construct()
-    {
-    }
-
     function operatorList()
     {
         return array('eztotp_user_state', 'eztotp_user_groups');
@@ -26,13 +22,7 @@ class EzTotpUserOperator
 
     function namedParameterList()
     {
-        return array('state_is' => array('param1' => array('type' => 'string',
-                'required' => false,
-                'default' => "")),
-            'eztotp_user_state' => array(),
-            'is_foreign' => array('context_portal' => array('type' => 'object',
-                'required' => false,
-                'default' => null)));
+        return array();
     }
 
     function modify($tpl, $operatorName, $operatorParameters, $rootNamespace, $currentNamespace, &$operatorValue, $namedParameters)
@@ -48,7 +38,7 @@ class EzTotpUserOperator
 
             default:
                 {
-                $operatorValue = '';
+                $operatorValue = 'eztotp_user_state';
                 }
                 break;
         }
@@ -71,7 +61,7 @@ class EzTotpUserOperator
                 break;
 
             default:
-                return '<span class="label label-success">no state</span>';
+                return '<span class="label label-warning">no state</span>';
                 break;
         }
     }

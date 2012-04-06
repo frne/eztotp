@@ -17,7 +17,24 @@ class EzTotpUserTest extends PHPUnit_Framework_TestCase
      */
     protected function setUp()
     {
+        $userId = 14;
 
+        // get ini
+        $ini = new eZINI( "eztotp.ini",'extension/eztotp/settings', null, null, true );
+        $ini->resetOverrideDirs();
+        $ini->resetGlobalOverrideDirs();
+        $ini->load(true);
+
+        // load configuration
+        $config = new EzTotpConfiguration();
+        $config->loadConfiguration($ini);
+
+        // create factory
+        $factory = new EzTotpFactory($config);
+
+        // create user
+        $userFactory = $factory->load("user");
+        $this->object = $userFactory->getUserById($userId);
     }
 
     /**

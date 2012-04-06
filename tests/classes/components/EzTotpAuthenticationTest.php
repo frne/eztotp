@@ -36,34 +36,66 @@ class EzTotpAuthenticationTest extends PHPUnit_Framework_TestCase
     }
 
     /**
+     * @covers EzTotpAuthentication::__construct
+     */
+    public function test__construct()
+    {
+        $ini = new eZINI("eztotp.ini", 'extension/eztotp/settings', null, null, true);
+        $ini->resetOverrideDirs();
+        $ini->resetGlobalOverrideDirs();
+        $ini->load(true);
+
+        $config = new EzTotpConfiguration();
+        $config->loadConfiguration($ini);
+        $object = new EzTotpAuthentication($config);
+        $this->assertTrue($object instanceof EzTotpAuthentication);
+    }
+
+    /**
      * @covers EzTotpAuthentication::setInitialisationSeed
-     * @todo Implement testSetInitialisationSeed().
-     *
+     */
     public function testSetInitialisationSeed()
     {
-    $this->object->setInitialisationSeed("SHNDJGTHNOTHGNDGETOGADRHGOPTHB");
-    $key = $this->object->getKey();
-    $this->assertFalse(empty($key));
-    }*/
+        // whitelist
+        $this->object->setInitialisationSeed("SHNDJGTHNOTHGNDGETOGADRHGOPTHB");
+        $key = $this->object->getKey();
+        $this->assertFalse(empty($key));
+
+        // blacklist
+        try {
+            $this->object->setInitialisationSeed(null);
+            $result = false;
+        }
+        catch (Exception $e)
+        {
+            $result = true;
+        }
+        $this->assertTrue($result);
+    }
 
     /**
      * @covers EzTotpAuthentication::getKey
-     * @todo Implement testGetKey().
+     * @covers EzTotpAuthentication::oath_hotp
      */
     public function testGetKey()
     {
-        // Remove the following lines when you implement this test.
-
+        $this->object->setInitialisationSeed("SHNDJGTHNOTHGNDGETOGADRHGOPTHB");
+        $key = $this->object->getKey();
+        $this->assertTrue(strlen($key) == 6);
     }
 
     /**
      * @covers EzTotpAuthentication::verify
-     * @todo Implement testVerify().
+     * @covers EzTotpAuthentication::get_timestamp
+     * @covers EzTotpAuthentication::oath_truncate
+     * @covers EzTotpAuthenticationHelperAbstract::base32_decode
      */
     public function testVerify()
     {
-
+        $this->object->setInitialisationSeed("SHNDJGTHNOTHGNDGETOGADRHGOPTHB");
+        $key = $this->object->getKey();
+        $this->assertTrue($this->object->verify($key));
+        $this->assertFalse($this->object->verify(000000));
     }
 }
-
 ?>
