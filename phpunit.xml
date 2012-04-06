@@ -27,4 +27,8 @@
             <directory suffix=".php">tests/operators</directory>
         </testsuite>
     </testsuites>
+    <logging>
+        <log type="coverage-html" target="doc/PHPUnit/coverage" charset="UTF-8" />
+        <log type="testdox-html" target="doc/PHPUnit/testdox.html"/>
+    </logging>
 </phpunit>

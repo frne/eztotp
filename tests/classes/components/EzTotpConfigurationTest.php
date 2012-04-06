@@ -28,11 +28,7 @@ class EzTotpConfigurationTest extends PHPUnit_Framework_TestCase
     {
     }
 
-    /**
-     * @covers EzTotpConfiguration::USER_STATE_OTP
-     * @covers EzTotpConfiguration::USER_STATE_NOOTP
-     * @covers EzTotpConfiguration::USER_STATE_BLOCKED
-     */
+
     public function testConstants()
     {
         $staticClassName = get_class($this->object);
@@ -44,6 +40,19 @@ class EzTotpConfigurationTest extends PHPUnit_Framework_TestCase
     public function testLoadConfiguration()
     {
         $this->object->loadConfiguration();
+    }
+
+    public function testConfigurationArray()
+    {
+        $ini = eZINI::instance("eztotp.ini", __DIR__ . "../../settings/");
+
+        var_dump($ini);
+
+
+        $this->object->loadConfiguration();
+        $config = $this->object->getData();
+        $this->assertTrue(is_array($config));
+        $this->assertTrue(count($config) > 0);
     }
 }
 ?>

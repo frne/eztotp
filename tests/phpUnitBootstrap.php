@@ -1,10 +1,13 @@
 <?php
+/**
+ * File containing the runtests CLI script
+ *
+ * @copyright Copyright (C) 1999-2012 eZ Systems AS. All rights reserved.
+ * @license http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
+ * @version //autogentag//
+ * @package tests
+ */
 
-define('BASE_PATH', realpath(dirname(__FILE__) . '/../../../'));
-define('APPLICATION_PATH', BASE_PATH . '/extension/tests');
+set_time_limit( 0 );
 
-// Define application environment
-define('APPLICATION_ENV', 'testing');
-include BASE_PATH . '/autoload.php';
-ezpAutoloader::updateExtensionAutoloadArray();
-
+require_once("phpUnitAutoloader.php");
