@@ -9,9 +9,12 @@
 
 $userId = (int)$Params["userId"];
 
+ // get ini
+$ini = eZINI::instance("eztotp.ini");
+
 // load configuration
 $config = new EzTotpConfiguration();
-$config->loadConfiguration();
+$config->loadConfiguration($ini);
 
 // create factory
 $factory = new EzTotpFactory($config);
