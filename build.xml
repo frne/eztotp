@@ -29,7 +29,7 @@
     </target>
 
     <target name="configure" depends="phpunit">
-        <replace dir="${basedir}" token="${build.version}" value="${build.version}"/>
+        <replace dir="${basedir}" token="0.2 unstable" value="${build.version}"/>
 
     </target>
 
