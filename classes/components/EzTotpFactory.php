@@ -3,7 +3,7 @@
  * EzTotp: Two-factor authentication with Google Authenticator for eZPublish
  *
  * @package EzTotp
- * @version 0.1 unstable/development
+ * @version 0.2
  * @author Frank Neff <fneff89@gmail.com>
  * @license LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html
  */
@@ -13,13 +13,24 @@
  */
 class EzTotpFactory
 {
+    /**
+     * @var EzTotpConfiguration
+     */
     private $config;
 
+    /**
+     * @param EzTotpConfiguration $config
+     */
     public function __construct(EzTotpConfiguration $config)
     {
         $this->config = $config;
     }
 
+    /**
+     * @param string $type
+     * @return mixed (factory)
+     * @throws EzTotpFactoryException
+     */
     public function load($type)
     {
         $factories = $this->getAvailableFactories();
@@ -43,11 +54,18 @@ class EzTotpFactory
 
     }
 
+    /**
+     * @return EzTotpConfiguration
+     */
     public function getConfig()
     {
         return $this->config;
     }
 
+    /**
+     * @return array
+     * @throws EzTotpConfigurationException
+     */
     private function getAvailableFactories()
     {
         if( !isset($this->config->factory) )
@@ -57,6 +75,4 @@ class EzTotpFactory
 
         return $this->config->factory["availableFactories"];
     }
-
-
 }

@@ -1,0 +1,15 @@
+h1.totp
+{
+    margin: 0;
+}
+
+.modal .actionResult
+{
+    display: none;
+}
+
+.totp .table span.label
+{
+    width: 65px;
+    display: block;
+}

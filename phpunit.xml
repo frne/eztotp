@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!--
+/**
+ * EzTotp: Two-factor authentication with Google Authenticator for eZPublish
+ *
+ * @package EzTotp
+ * @version 0.2
+ * @author Frank Neff <fneff89@gmail.com>
+ * @license LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html
+ */
+-->
+
+<phpunit bootstrap="./tests/phpUnitBootstrap.php"
+         colors="true">
+    <testsuites>
+        <testsuite name="EzTotpClassTests">
+            <directory suffix="Test.php">tests/classes</directory>
+        </testsuite>
+        <testsuite name="EzTotpFileTests">
+            <directory suffix="Test.php">tests/files</directory>
+        </testsuite>
+        <testsuite name="EzTotpOperatorsTests">
+            <directory suffix="Test.php">tests/operators</directory>
+        </testsuite>
+    </testsuites>
+    <logging>
+        <log type="coverage-html" target="build/PHPUnit/coverage" charset="UTF-8" />
+        <log type="testdox-html" target="build/PHPUnit/testlog.html"/>
+        <log type="tap" target="build/PHPUnit/testlog.tap"/>
+        <log type="log-metrix" target="build/PHPUnit/logmetrix.xml"/>
+    </logging>
+</phpunit>

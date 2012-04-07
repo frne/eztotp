@@ -3,7 +3,7 @@
  * EzTotp: Two-factor authentication with Google Authenticator for eZPublish
  *
  * @package EzTotp
- * @version 0.1 unstable/development
+ * @version 0.2
  * @author Frank Neff <fneff89@gmail.com>
  * @license LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html
  */
@@ -11,10 +11,6 @@
 $Module = array( 'name' => 'eZTotp', 'variable_params' => true );
 
 $ViewList = array();
-$ViewList['test'] = array(
-    'functions' => array( 'test' ),
-    'script' => 'test.php',
-    'params' => array());
 
 $ViewList['login'] = array(
     'functions' => array( 'login' ),
@@ -31,6 +27,10 @@ $ViewList['login'] = array(
                                                          'UserRedirectURI' => 'RedirectURI' ) ),
     'params' => array( ) );
 
+$ViewList['qr'] = array(
+    'functions' => array( 'qr' ),
+    'script' => 'qr.php',
+    'params' => array( "userId" ) );
 
 /**
 $ViewList['elevation_detail'] = array(

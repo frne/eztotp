@@ -3,7 +3,7 @@
  * EzTotp: Two-factor authentication with Google Authenticator for eZPublish
  *
  * @package EzTotp
- * @version 0.1 unstable/development
+ * @version 0.2
  * @author Frank Neff <fneff89@gmail.com>
  * @license LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html
  */
@@ -14,7 +14,7 @@ class EzTotpInfo
     {
         return array(
             'Name' => "EzTotp: Two-factor authentication with Google Authenticator for eZPublish",
-            'Version' => "0.1 unstable/development",
+            'Version' => "0.2",
             'Author' => "Frank Neff <a href='http://www.frankneff.ch'>www.frankneff.ch</a>",
             'Copyright' => "Copyright (C) 2012 Frank Neff",
             'License' => "Lesser GNu Public License - LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html",
