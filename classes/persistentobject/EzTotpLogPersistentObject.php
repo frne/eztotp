@@ -16,7 +16,7 @@ class EzTotpLogPersistentObject extends eZPersistentObject
     /**
      * @var int
      */
-    public $Id;
+    public $LogId;
 
     /**
      * @var int
@@ -44,11 +44,6 @@ class EzTotpLogPersistentObject extends eZPersistentObject
     public $Message;
 
     /**
-     * @var integer
-     */
-    public $DataObject;
-
-    /**
      * @return array
      */
     public static function definition()
@@ -57,7 +52,13 @@ class EzTotpLogPersistentObject extends eZPersistentObject
             "fields" => array(
                 "id" => array(
                     "name" => "Id",
-                    "datatype" => "integer",
+                    "datatype" => "int",
+                    "default" => 0,
+                    "required" => true
+                ),
+                "log_id" => array(
+                    "name" => "LogId",
+                    "datatype" => "string",
                     "default" => 0,
                     "required" => true
                 ),
@@ -91,18 +92,19 @@ class EzTotpLogPersistentObject extends eZPersistentObject
                     "default" => "",
                     "required" => true
                 ),
-                "data" => array(
-                    "name" => "DataSerialized",
+                "message" => array(
+                    "name" => "Message",
                     "datatype" => "string",
                     "default" => "",
                     "required" => true
                 )
             ),
             "function_attributes" => array(),
+            "keys" => array("id"),
             "increment_key" => "id",
-            "keys" => array("id", "ezuser_id"),
             "class_name" => __CLASS__,
-            "name" => "eztotp_user"
+            "name" => "eztotp_log"
+
         );
     }
 
@@ -126,11 +128,9 @@ class EzTotpLogPersistentObject extends eZPersistentObject
         $object = self::fetchObject(
             self::definition(),
             null,
-            array("id" => (string)$Id),
+            array("log_id" => (string)$Id),
             (bool)$asObject
         );
-
-        $object->unserializeDataObject();
         return $object;
     }
 
@@ -156,15 +156,22 @@ class EzTotpLogPersistentObject extends eZPersistentObject
             throw new EzTotpLogException("UserId has to be int!");
         }
 
+        $id = uniqid("log_", true);
+        if(!is_int($UserId))
+        {
+            $UserId = eZUser::currentUserID();
+        }
+
         $row = array(
-            "id" => uniqid("log_", true),
-            "user_id" => $UserId || eZUser::currentUserID(),
+            "log_id" => $id,
+            "user_id" => $UserId,
             "type" => $Type,
             "level" => $Level,
             "timestamp" => time(),
             "ip_address" => $_SERVER['REMOTE_ADDR'],
             "message" => $Message
         );
+
         return new self($row);
     }
 }

@@ -23,12 +23,13 @@ ALTER TABLE eztotp_user ADD INDEX(ezuser_id);
  * Schema for EzTotpLogPersistentObject
  */
 CREATE TABLE `eztotp_log` (
-  `id` varchar(30) NOT NULL,
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `log_id` text NOT NULL,
   `user_id` int(20),
   `type` int(1),
   `level` int(1),
   `timestamp` int(20),
-  `ip_addess` text NOT NULL,
+  `ip_address` text NOT NULL,
   `message` text NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;

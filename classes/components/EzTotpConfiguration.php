@@ -23,7 +23,7 @@ class EzTotpConfiguration extends EzTotpPropertyOverloadAbstract
     /**
      * Constants for the different log-types
      */
-    const LOG_TYPE_ENV = 0;
+    const LOG_TYPE_HILEVEL = 0;
     const LOG_TYPE_ERROR = 1;
     const LOG_TYPE_ACCESS = 2;
 

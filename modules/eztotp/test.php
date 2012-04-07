@@ -10,7 +10,6 @@
 
 
 echo "<pre>";
-// wire up for eZTotop
 
 try {
     // get ini
@@ -22,13 +21,8 @@ try {
 
 
     // create factory
-    $factory = new EzTotpFactory($configuration);
-    $userFactory = $factory->load("user");
-
-    // get user
-    $user = $userFactory->getUserById(14);
-
-    print_r($user);
+    $log = new EzTotpLog($configuration);
+    $log->write(EzTotpConfiguration::LOG_TYPE_HILEVEL, EzTotpConfiguration::LOG_LEVEL_INFO, "Test log");
 
     echo "</pre>";
 
