@@ -1,0 +1,15 @@
+#leftmenu .totp-left-menu
+{
+    width: auto !important;
+}
+
+#leftmenu #leftmenu-design .totp-left-menu ul
+{
+    margin: 0;
+    padding: 0;
+}
+
+#header-topmenu
+{
+    padding-top: 42px !important;
+}

@@ -3,7 +3,7 @@
  * EzTotp: Two-factor authentication with Google Authenticator for eZPublish
  *
  * @package EzTotp
- * @version 0.1 unstable/development
+ * @version 0.2
  * @author Frank Neff <fneff89@gmail.com>
  * @license LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html
  */
@@ -16,7 +16,7 @@ class EzTotpUserPersistentObject extends eZPersistentObject
     /**
      * @var int
      */
-    protected $EzUserId;
+    public $EzUserId;
 
     /**
      * @var string
@@ -55,18 +55,26 @@ class EzTotpUserPersistentObject extends eZPersistentObject
                 )
             ),
             "function_attributes" => array(),
-            "increment_key" => "id",
-            "keys" => array("id", "ezuser_id"),
+            "keys" => array("ezuser_id"),
             "class_name" => __CLASS__,
             "name" => "eztotp_user"
         );
     }
 
-    protected function __construct($row = array())
+    /**
+     * @param array $row
+     */
+    public function __construct($row = array())
     {
         parent::__construct($row);
     }
 
+    /**
+     * @static
+     * @param int $ezUserId
+     * @param bool $asObject
+     * @return array|eZPersistentObject|null
+     */
     public static function fetch($ezUserId, $asObject = true)
     {
         return self::fetchObject(
@@ -77,6 +85,12 @@ class EzTotpUserPersistentObject extends eZPersistentObject
         );
     }
 
+    /**
+     * @static
+     * @param int $state
+     * @param bool $asObject
+     * @return array|eZPersistentObject|null
+     */
     public static function fetchByState($state, $asObject = true)
     {
         return self::fetchObject(
@@ -86,11 +100,26 @@ class EzTotpUserPersistentObject extends eZPersistentObject
         );
     }
 
-    private static function create( $ezUserId, $state = 1, $otpSeed)
+    /**
+     * @static
+     * @param int $ezUserId
+     * @param int $state
+     * @param string $otpSeed
+     * @return EzTotpUserPersistentObject
+     * @throws EzTotpPersistanceException
+     */
+    public static function create( $ezUserId, $state = EzTotpConfiguration::USER_STATE_OTP, $otpSeed)
     {
         if(!is_string($otpSeed) or strlen($otpSeed) < 20)
         {
             throw new EzTotpPersistanceException("Invalid initialSeed given. Cannot create persistent object.");
+        }
+
+        $checkExistingObject = self::fetch($ezUserId);
+
+        if(!is_null($checkExistingObject->EzUserId))
+        {
+            throw new EzTotpPersistanceException("Object already exists!");
         }
 
         $row = array(

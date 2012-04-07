@@ -3,7 +3,7 @@
  * EzTotp: Two-factor authentication with Google Authenticator for eZPublish
  *
  * @package EzTotp
- * @version 0.1 unstable/development
+ * @version 0.2
  * @author Frank Neff <fneff89@gmail.com>
  * @license LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html
  */
@@ -41,6 +41,11 @@ class EzTotpAuthenticationFactory extends EzTotpFactoryAbstract
         $this->authentication = $authentication;
     }
 
+    /**
+     * @param array $pass
+     * @return EzUser|boolean
+     * @throws EzTotpAuthenticationException|EzTotpFactoryException
+     */
     public function authenticate($pass)
     {
         if (!$this->user instanceof EzTotpUser) {
@@ -87,6 +92,11 @@ class EzTotpAuthenticationFactory extends EzTotpFactoryAbstract
 
     }
 
+    /**
+     * @param EzTotpUser $user
+     * @param string $password
+     * @return eZUser|boolean
+     */
     private function logIn(EzTotpUser $user, $password)
     {
         return eZUser::loginUser($user->Login, $password);
