@@ -21,14 +21,37 @@ class EzTotpConfiguration extends EzTotpPropertyOverloadAbstract
     const USER_STATE_BLOCKED = 2;
 
     /**
-     * Loads configuration from INI-File
+     * Constants for the different log-types
+     */
+    const LOG_TYPE_ENV = 0;
+    const LOG_TYPE_ERROR = 1;
+    const LOG_TYPE_ACCESS = 2;
+
+    /**
+     * Constants for the different log-levels
+     */
+    const LOG_LEVEL_INFO = 0;
+    const LOG_LEVEL_WARN = 1;
+    const LOG_LEVEL_EXCEPTION = 2;
+
+    /**
+     * @param eZINI $iniInstance
      */
     public function loadConfiguration(eZINI $iniInstance)
     {
 
-        foreach($iniInstance->BlockValues as $key => $value)
+        foreach ($iniInstance->BlockValues as $key => $value)
         {
             $this->$key = $value;
         }
+    }
+
+    /**
+     * @return array
+     */
+    public function getConstants()
+    {
+        $reflect = new ReflectionClass(get_class($this));
+        return $reflect->getConstants();
     }
 }

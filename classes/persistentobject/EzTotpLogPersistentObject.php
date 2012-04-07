@@ -9,24 +9,44 @@
  */
 
 /**
- * Class EzTotpUserPersistentObject
+ * Class EzTotpLogPersistentObject
  */
 class EzTotpLogPersistentObject extends eZPersistentObject
 {
     /**
      * @var int
      */
-    protected $EzUserId;
+    public $Id;
+
+    /**
+     * @var int
+     */
+    public $UserId;
 
     /**
      * @var string
      */
-    public $State;
+    public $Type;
 
     /**
      * @var integer
      */
-    public $OtpSeed;
+    public $Level;
+
+    /**
+     * @var integer
+     */
+    public $IpAddess;
+
+    /**
+     * @var integer
+     */
+    public $Message;
+
+    /**
+     * @var integer
+     */
+    public $DataObject;
 
     /**
      * @return array
@@ -35,20 +55,44 @@ class EzTotpLogPersistentObject extends eZPersistentObject
     {
         return array(
             "fields" => array(
-                "ezuser_id" => array(
-                    "name" => "EzUserId",
+                "id" => array(
+                    "name" => "Id",
                     "datatype" => "integer",
                     "default" => 0,
                     "required" => true
                 ),
-                "state" => array(
-                    "name" => "State",
+                "user_id" => array(
+                    "name" => "UserId",
+                    "datatype" => "integer",
+                    "default" => 0,
+                    "required" => true
+                ),
+                "type" => array(
+                    "name" => "Type",
                     "datatype" => "integer",
                     "default" => 0,
                     "required" => false
                 ),
-                "otp_seed" => array(
-                    "name" => "OtpSeed",
+                "level" => array(
+                    "name" => "Level",
+                    "datatype" => "integer",
+                    "default" => "",
+                    "required" => true
+                ),
+                "timestamp" => array(
+                    "name" => "Timestamp",
+                    "datatype" => "integer",
+                    "default" => "",
+                    "required" => true
+                ),
+                "ip_address" => array(
+                    "name" => "IpAddress",
+                    "datatype" => "string",
+                    "default" => "",
+                    "required" => true
+                ),
+                "data" => array(
+                    "name" => "DataSerialized",
                     "datatype" => "string",
                     "default" => "",
                     "required" => true
@@ -70,56 +114,56 @@ class EzTotpLogPersistentObject extends eZPersistentObject
         parent::__construct($row);
     }
 
+
     /**
      * @static
-     * @param int $ezUserId
+     * @param int $Id
      * @param bool $asObject
-     * @return array|eZPersistentObject|null
+     * @return EzTotpLogPersistentObject|null
      */
-    public static function fetch($ezUserId, $asObject = true)
+    public static function fetch($Id, $asObject = true)
     {
-        return self::fetchObject(
+        $object = self::fetchObject(
             self::definition(),
             null,
-            array("ezuser_id" => (string)$ezUserId),
+            array("id" => (string)$Id),
             (bool)$asObject
         );
+
+        $object->unserializeDataObject();
+        return $object;
     }
 
     /**
      * @static
-     * @param int $state
-     * @param bool $asObject
-     * @return array|eZPersistentObject|null
+     * @param $Type
+     * @param $Level
+     * @param EzTotpLogData $Data
+     * @return EzTotpLogPersistentObject
+     * @throws EzTotpLogException
      */
-    public static function fetchByState($state, $asObject = true)
+    public static function create($Type, $Level, $Message = "", $UserId = false)
     {
-        return self::fetchObject(
-            self::definition(),
-            null,
-            array("state" => (int)$state)
-        );
-    }
+        if (!is_int((int)$Type)) {
+            throw new EzTotpLogException("Type has to be int!");
+        }
 
-    /**
-     * @static
-     * @param int $ezUserId
-     * @param int $state
-     * @param string $otpSeed
-     * @return EzTotpUserPersistentObject
-     * @throws EzTotpPersistanceException
-     */
-    private static function create( $ezUserId, $state = 1, $otpSeed)
-    {
-        if(!is_string($otpSeed) or strlen($otpSeed) < 20)
-        {
-            throw new EzTotpPersistanceException("Invalid initialSeed given. Cannot create persistent object.");
+        if (!is_int((int)$Level)) {
+            throw new EzTotpLogException("Level has to be int!");
+        }
+
+        if (!is_int((int)$UserId)) {
+            throw new EzTotpLogException("UserId has to be int!");
         }
 
         $row = array(
-            "ezuser_id" => $ezUserId,
-            "state" => $state,
-            "otp_seed" => $otpSeed
+            "id" => uniqid("log_", true),
+            "user_id" => $UserId || eZUser::currentUserID(),
+            "type" => $Type,
+            "level" => $Level,
+            "timestamp" => time(),
+            "ip_address" => $_SERVER['REMOTE_ADDR'],
+            "message" => $Message
         );
         return new self($row);
     }
