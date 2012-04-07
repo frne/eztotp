@@ -1,11 +1,11 @@
 <?php
 /**
- * File containing the runtests CLI script
+ * EzTotp: Two-factor authentication with Google Authenticator for eZPublish
  *
- * @copyright Copyright (C) 1999-2012 eZ Systems AS. All rights reserved.
- * @license http://www.gnu.org/licenses/gpl-2.0.txt GNU General Public License v2
- * @version //autogentag//
- * @package tests
+ * @package EzTotp
+ * @version 0.2
+ * @author Frank Neff <fneff89@gmail.com>
+ * @license LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html
  */
 
 set_time_limit( 0 );

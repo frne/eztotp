@@ -1,10 +1,11 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
- * User: frank
- * Date: 31.03.12
- * Time: 08:04
- * To change this template use File | Settings | File Templates.
+ * EzTotp: Two-factor authentication with Google Authenticator for eZPublish
+ *
+ * @package EzTotp
+ * @version 0.2
+ * @author Frank Neff <fneff89@gmail.com>
+ * @license LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html
  */
 
 $userId = (int)$Params["userId"];
