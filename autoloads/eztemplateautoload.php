@@ -9,6 +9,5 @@
  */
 
 $eZTemplateOperatorArray = array();
-$eZTemplateOperatorArray[] = array( 'script' => '',
-                                    'class' => 'EzTotpUserOperator',
+$eZTemplateOperatorArray[] = array( 'class' => 'EzTotpUserOperator',
                                     'operator_names' => array( 'eztotp_user_state', 'eztotp_user_group' ) );
