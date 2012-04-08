@@ -1,5 +1,5 @@
 <div class="totp">
-    {include uri='design:eztotp/parts/checkJavaScript.tpl'}
+{include uri='design:eztotp/parts/checkJavaScript.tpl'}
     <h1>
     {$pageTitle}
     </h1>
@@ -12,7 +12,7 @@
             <th>Level</th>
             <th>Message</th>
         </tr>
-        <tr class="logListItem logListItemDummy" style="display: none;">
+        <tr class="logListItem logListItemDummy uiTableFilterIgnore" style="display: none;">
             <td class="time">
                 time
             </td>
@@ -29,7 +29,7 @@
                 message
             </td>
         </tr>
-        <tr class="loadMoreTrigger" id="loadMoreLogsTrigger">
+        <tr class="loadMoreTrigger uiTableFilterIgnore" id="loadMoreLogsTrigger">
             <td colspan="5">
                 <button class="btn btn-primary">load older entries</button>
             </td>

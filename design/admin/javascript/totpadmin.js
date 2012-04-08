@@ -133,7 +133,7 @@ window.eztotp.admin = window.eztotp.admin || {};
             var dom = $(".logListItemDummy").clone(),
                 domObject = $(dom);
 
-            domObject.removeClass("logListItemDummy").addClass("logListItem_" + data.id);
+            domObject.removeClass("logListItemDummy").removeClass("uiTableFilterIgnore").addClass("logListItem_" + data.id);
 
             // set time
             domObject.find(".time").html(data.time);
@@ -171,18 +171,80 @@ window.eztotp.admin = window.eztotp.admin || {};
         this.loadMore = function () {
             var offset = $('.logListItem').length - 1;
             this.getLogData(offset, this.limit);
-        }
+        };
+    }
 
+    /**
+     * @class LogAdmin
+     */
+    var TableFilter = function (limit) {
+        var self = this;
+
+        this.table = $("table.canBeFiltered");
+
+        this.init = function () {
+
+            if (this.checkTargetTable()) {
+                // set filter dom
+                var filterDom = '<div class="tableFilter">' +
+                    '<input type="text" class="input-small tableFilterInput" placeholder="Filter">' +
+                    '<button class="btn btn-small clearFilter">clear</button>' +
+                    '</div>';
+                this.table.before(filterDom);
+
+                // bind filter event
+                $("input.tableFilterInput")
+                    .bind("change", function (event) {
+                        self.doFilter(this);
+                    })
+                    .bind("keyup", function (event) {
+                        console.log("keydown");
+                        self.doFilter(this);
+                    });
+
+                // bind clear button
+                $("button.clearFilter").bind("click", function (event) {
+                    self.resetFilter();
+                });
+
+            }
+        };
+
+        this.checkTargetTable = function () {
+            if (this.table.length < 1) {
+                return false;
+            }
+            else if (this.table.length > 1) {
+                this.table = this.table[0];
+            }
+            this.table = $(this.table);
+
+            return true;
+        };
+
+        this.doFilter = function (inputObject) {
+
+            $.uiTableFilter(self.table, $(inputObject).val());
+        };
+
+        this.resetFilter = function () {
+            $("input.tableFilterInput").val("").trigger("change");
+        };
     };
+
 
     $(document).ready(function () {
         // bind namespaces
         globNs.userAdmin = new UserAdmin();
         globNs.logAdmin = new LogAdmin(10);
+        globNs.tableFilter = new TableFilter();
 
         // fire init
         globNs.userAdmin.init();
         globNs.logAdmin.init();
+        globNs.tableFilter.init();
+
+
     });
 
 
