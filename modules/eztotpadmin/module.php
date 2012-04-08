@@ -22,10 +22,10 @@ $ViewList = array(
         'params'                  => array("type", "limit", "offset")
     ),
     'log' => array(
-        'default_navigation_part' => 'eztotpadminnavigationpart',
-        'script'                  => 'log.php',
-        'params'                  => array("type", "limit", "offset")
-    )
+            'default_navigation_part' => 'eztotpadminnavigationpart',
+            'script'                  => 'log.php',
+            'params'                  => array("type")
+        )
 );
 
 $FunctionList = array();

@@ -13,3 +13,15 @@ h1.totp
     width: 65px;
     display: block;
 }
+
+.totp .table tr#loadMoreLogsTrigger td
+{
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+.totp .table tr#loadMoreLogsTrigger td button
+{
+    width: 60%;
+    margin: 8px 0;
+}

@@ -75,8 +75,7 @@ class EzTotpLog
                 break;
         }
 
-        if(!$this->logInstance instanceof EzTotpLogInterface)
-        {
+        if (!$this->logInstance instanceof EzTotpLogInterface) {
             throw new EzTotpLogException("Logger has to implement EzTotpLogInterface!");
         }
 
@@ -99,13 +98,43 @@ class EzTotpLog
 
     public function getListByType($type, $limit = 0, $offset = 0)
     {
-        $type = parse_str($type);
-        if(! $this->logTypeEnabled($type))
-        {
-            throw new EzTotpLogException("No valid log type!");
+
+
+        // set parameters
+        $parameters = array();
+        if ($offset > 0) {
+            $parameters['offset'] = (int)$offset;
+        }
+        if ($limit > 0) {
+            $parameters['limit'] = (int)$limit;
         }
 
-        // TODO: Database implementation
-        die("to be done");
+
+        // set query
+        $sql = "SELECT *
+                FROM eztotp_log
+                WHERE type = '" . $type . "' ORDER BY timestamp DESC";
+
+        // database transaction
+        $db = eZDB::instance();
+        $rows = $db->arrayQuery($sql, $parameters);
+        $list = array();
+
+        foreach ($rows as $row)
+        {
+            $list[] = array(
+                "id" => $row['id'],
+                "time" => date("D, M j, Y - G:i:s", $row['timestamp']),
+                "user" => array(
+                    "id" => $row['user_id'],
+                    "ip" => $row['ip_address']
+                ),
+                "level" => $row['level'],
+                "message" => $row['message']
+
+            );
+        }
+
+        return $list;
     }
 }

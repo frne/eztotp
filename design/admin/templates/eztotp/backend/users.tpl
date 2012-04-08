@@ -27,6 +27,7 @@
 {/switch}
 
 <div class="totp">
+    {include uri='design:eztotp/parts/checkJavaScript.tpl'}
     <h1>
         {$pageTitle}
     </h1>
