@@ -10,19 +10,17 @@
 /**
  * Schema for EzTotpUserPersistentObject
  */
-CREATE TABLE `eztotp_user` (
+CREATE TABLE IF NOT EXISTS `eztotp_user` (
   `ezuser_id` int(11) NOT NULL,
   `state` int(1),
   `otp_seed` text NOT NULL,
   PRIMARY KEY (`ezuser_id`)
 ) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
-ALTER TABLE eztotp_user ADD INDEX(ezuser_id);
-
 /**
  * Schema for EzTotpLogPersistentObject
  */
-CREATE TABLE `eztotp_log` (
+CREATE TABLE IF NOT EXISTS `eztotp_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `log_id` text NOT NULL,
   `user_id` int(20),

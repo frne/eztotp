@@ -60,6 +60,11 @@ class EzTotpAuthenticationFactory extends EzTotpFactoryAbstract
             throw new EzTotpFactoryException($message);
         }
 
+        if(!isset( $this->user->otpState))
+        {
+            $this->user->otpState = EzTotpConfiguration::USER_STATE_NOOTP;
+        }
+
         // switch user state
         switch ((int)$this->user->otpState)
         {

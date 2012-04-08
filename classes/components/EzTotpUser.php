@@ -101,9 +101,10 @@ class EzTotpUser extends eZUser
             return null;
         }
 
-        $otpObject = EzTotpUserPersistentObject::fetch( $instance->id() );
-
-        $instance->setOtpObject($otpObject);
+        if( $otpObject = EzTotpUserPersistentObject::fetch( $instance->id() ) instanceof EzTotpUserPersistentObject)
+        {
+            $instance->setOtpObject($otpObject);
+        }
 
         return $instance;
     }
