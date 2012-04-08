@@ -17,10 +17,15 @@ $ViewList = array(
         'params'                  => array()
     ),
     'users' => array(
-                'default_navigation_part' => 'eztotpadminnavigationpart',
-                'script'                  => 'users.php',
-                'params'                  => array("type")
-            )
+        'default_navigation_part' => 'eztotpadminnavigationpart',
+        'script'                  => 'users.php',
+        'params'                  => array("type", "limit", "offset")
+    ),
+    'log' => array(
+        'default_navigation_part' => 'eztotpadminnavigationpart',
+        'script'                  => 'log.php',
+        'params'                  => array("type", "limit", "offset")
+    )
 );
 
 $FunctionList = array();

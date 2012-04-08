@@ -96,4 +96,16 @@ class EzTotpLog
         }
         return false;
     }
+
+    public function getListByType($type, $limit = 0, $offset = 0)
+    {
+        $type = parse_str($type);
+        if(! $this->logTypeEnabled($type))
+        {
+            throw new EzTotpLogException("No valid log type!");
+        }
+
+        // TODO: Database implementation
+        die("to be done");
+    }
 }
