@@ -60,8 +60,7 @@ class EzTotpAuthenticationFactory extends EzTotpFactoryAbstract
             throw new EzTotpFactoryException($message);
         }
 
-        if(!isset( $this->user->otpState))
-        {
+        if (!isset($this->user->otpState)) {
             $this->user->otpState = EzTotpConfiguration::USER_STATE_NOOTP;
         }
 
@@ -84,7 +83,12 @@ class EzTotpAuthenticationFactory extends EzTotpFactoryAbstract
                     return $this->logIn($this->user, $pass["userPassword"]);
                 }
 
-                // TODO: Logging
+                $this->_factory->log->write(
+                    EzTotpConfiguration::LOG_TYPE_ACCESS,
+                    EzTotpConfiguration::LOG_LEVEL_FATAL,
+                    "Authentication failed: Wrong TOTP key!",
+                    $this->user->id()
+                );
 
                 return false;
                 break;
@@ -104,7 +108,25 @@ class EzTotpAuthenticationFactory extends EzTotpFactoryAbstract
      */
     private function logIn(EzTotpUser $user, $password)
     {
-        return eZUser::loginUser($user->Login, $password);
+        $ezUser = eZUser::loginUser($user->Login, $password);
+
+        if ($ezUser instanceof eZUser) {
+            $this->_factory->log->write(
+                EzTotpConfiguration::LOG_TYPE_ACCESS,
+                EzTotpConfiguration::LOG_LEVEL_INFO,
+                "Successfully authenticated",
+                $user->id()
+            );
+        }
+        else
+        {
+            $this->_factory->log->write(
+                EzTotpConfiguration::LOG_TYPE_ACCESS,
+                EzTotpConfiguration::LOG_LEVEL_FATAL,
+                "Authentication failed: Wrong password!",
+                $user->id()
+            );
+        }
     }
 
 

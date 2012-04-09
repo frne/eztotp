@@ -41,7 +41,7 @@ class EzTotpLog
 
         switch ($level)
         {
-            case EzTotpConfiguration::LOG_LEVEL_EXCEPTION:
+            case EzTotpConfiguration::LOG_LEVEL_FATAL:
             case EzTotpConfiguration::LOG_LEVEL_INFO:
             case EzTotpConfiguration::LOG_LEVEL_WARN:
                 break;

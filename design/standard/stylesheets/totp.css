@@ -41,3 +41,36 @@
 {
     margin: 0 0 8px 8px;
 }
+
+.totp .table .logListItem .message .short p
+{
+    float: left;
+}
+
+.totp .table .logListItem .message .short .displayFullMessageTrigger
+{
+    float: left;
+    margin: 4px 0 0 10px;
+}
+
+.totp .table .logListItem .message .full
+{
+    display: none;
+}
+
+.totp .table .logListItem .message .full p
+{
+    float: left;
+    color: #333333;
+}
+
+.totp .table .logListItem .message .full p.desc
+{
+    font-weight: bold;
+    color: #AAAAAA;
+}
+
+.clear
+{
+    clear: both;
+}

@@ -25,6 +25,8 @@ if(array_key_exists($typeConstantName, $configConstants))
 {
     $Tpl                 = eZTemplate::factory();
     $Tpl->setVariable("pageTitle", "Logs / " . ucfirst($Params["type"]));
+    $Tpl->setVariable("logType", $Params["type"]);
+
     $Result              = array();
     $Result['left_menu'] = 'design:eztotp/backend/left_menu.tpl';
     $Result['path']      = array(
@@ -34,7 +36,7 @@ if(array_key_exists($typeConstantName, $configConstants))
                                        'eztotpadmin/log/' . $Params["type"],
                                        'TOTP Admin - Log / ' . ucfirst($Params["type"])
                                     )));
-    $Result['content']   = $Tpl->fetch( 'design:eztotp/backend/log/type_' . $Params["type"] . '.tpl');
+    $Result['content']   = $Tpl->fetch( 'design:eztotp/backend/log.tpl');
 }
 else
 {

@@ -103,7 +103,7 @@ window.eztotp.admin = window.eztotp.admin || {};
 
         this.getLogData = function (offset, limit) {
 
-            if (typeof limit !== "integer" || limit === 0) {
+            if (typeof limit !== "number") {
                 limit = this.limit;
             }
 
@@ -148,7 +148,8 @@ window.eztotp.admin = window.eztotp.admin || {};
             domObject.find(".level").html(self.createLogTypeDom(data.level));
 
             // set message
-            domObject.find(".message").html("<p>" + data.message + "</p>");
+            domObject.find(".message").html(data.message);
+            self.initializeFullMessageButton(domObject);
 
             $(".loadMoreTrigger").before(domObject);
             domObject.fadeIn("slow");
@@ -160,7 +161,7 @@ window.eztotp.admin = window.eztotp.admin || {};
                     return '<span class="label label-info">info</span>';
                     break;
                 case "1":
-                    return '<span class="label label-warn">warn</span>';
+                    return '<span class="label label-warning">warn</span>';
                     break;
                 case "2":
                     return '<span class="label label-important">error</span>';
@@ -172,7 +173,34 @@ window.eztotp.admin = window.eztotp.admin || {};
             var offset = $('.logListItem').length - 1;
             this.getLogData(offset, this.limit);
         };
-    }
+
+        this.initializeFullMessageButton = function (targetTr) {
+            var parent = $(targetTr),
+                short = $(parent.find(".message .short")),
+                full = $(parent.find(".message .full"));
+
+            console.log(full);
+
+            if ((short.length > 0) && (full.length > 0)) {
+                short.append($('<button class="displayFullMessageTrigger btn btn-mini"' +
+                    'onclick="eztotp.admin.logAdmin.toggleFullMessage(this);">' +
+                    'more <span class="caret"></span>' +
+                    '</button><div class="clear"></div>'));
+            }
+
+
+        };
+
+        this.toggleFullMessage = function (button) {
+            $(button).closest("tr").find(".message .full").toggle();
+            if ($(button).html() == 'more <span class="caret"></span>') {
+                $(button).html('less <span class="caret"></span>');
+            }
+            else {
+                $(button).html('more <span class="caret"></span>');
+            }
+        }
+    };
 
     /**
      * @class LogAdmin

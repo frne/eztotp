@@ -24,9 +24,12 @@ class EzTotpLoginUser extends eZUser
         $userFactory = $factory->load("user");
         $user = $userFactory->fetchByName($login);
 
-        if(!$user instanceof EzTotpUser)
-        {
-            // user does not exist
+        if (!$user instanceof EzTotpUser) {
+            $factory->log->write(
+                EzTotpConfiguration::LOG_TYPE_ACCESS,
+                EzTotpConfiguration::LOG_LEVEL_WARN,
+                "User does not exist: '$login'"
+            );
             return false;
         }
 

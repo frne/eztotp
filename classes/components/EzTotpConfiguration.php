@@ -32,7 +32,7 @@ class EzTotpConfiguration extends EzTotpPropertyOverloadAbstract
      */
     const LOG_LEVEL_INFO = 0;
     const LOG_LEVEL_WARN = 1;
-    const LOG_LEVEL_EXCEPTION = 2;
+    const LOG_LEVEL_FATAL = 2;
 
     /**
      * @param eZINI $iniInstance

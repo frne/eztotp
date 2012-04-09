@@ -24,6 +24,7 @@ class EzTotpFactory
     public function __construct(EzTotpConfiguration $config)
     {
         $this->config = $config;
+        $this->log = new EzTotpLog($this->config);
     }
 
     /**

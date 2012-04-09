@@ -4,14 +4,17 @@
     {$pageTitle}
     </h1>
 
-    <table class="table">
+    <table class="table canBeFiltered">
+        <thead>
         <tr>
-            <th>Time</th>
-            <th>User ID</th>
-            <th>IP-Address</th>
-            <th>Level</th>
-            <th>Message</th>
+            <th class="span2">Time</th>
+            <th class="span2">User ID</th>
+            <th class="span1">IP-Address</th>
+            <th class="span1">Level</th>
+            <th class="span6">Message</th>
         </tr>
+        </thead>
+        <tbody>
         <tr class="logListItem logListItemDummy uiTableFilterIgnore" style="display: none;">
             <td class="time">
                 time
@@ -34,6 +37,7 @@
                 <button class="btn btn-primary">load older entries</button>
             </td>
         </tr>
+        </tbody>
     </table>
 </div>
-{include uri='design:eztotp/parts/logJavascriptInitialisation.tpl' logtype="access"}
+{include uri='design:eztotp/parts/logJavascriptInitialisation.tpl'}
