@@ -8,7 +8,7 @@
         <thead>
         <tr>
             <th class="span2">Time</th>
-            <th class="span2">User ID</th>
+            <th class="span2">User (ID)</th>
             <th class="span1">IP-Address</th>
             <th class="span1">Level</th>
             <th class="span6">Message</th>

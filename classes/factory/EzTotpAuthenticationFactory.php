@@ -85,7 +85,7 @@ class EzTotpAuthenticationFactory extends EzTotpFactoryAbstract
 
                 $this->_factory->log->write(
                     EzTotpConfiguration::LOG_TYPE_ACCESS,
-                    EzTotpConfiguration::LOG_LEVEL_FATAL,
+                    EzTotpConfiguration::LOG_LEVEL_WARN,
                     "Authentication failed: Wrong TOTP key!",
                     $this->user->id()
                 );
@@ -122,11 +122,13 @@ class EzTotpAuthenticationFactory extends EzTotpFactoryAbstract
         {
             $this->_factory->log->write(
                 EzTotpConfiguration::LOG_TYPE_ACCESS,
-                EzTotpConfiguration::LOG_LEVEL_FATAL,
+                EzTotpConfiguration::LOG_LEVEL_WARN,
                 "Authentication failed: Wrong password!",
                 $user->id()
             );
         }
+
+        return $ezUser;
     }
 
 

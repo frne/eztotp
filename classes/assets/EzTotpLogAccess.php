@@ -1,17 +1,17 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
- * User: frank
- * Date: 07.04.12
- * Time: 18:56
- * To change this template use File | Settings | File Templates.
+ * EzTotp: Two-factor authentication with Google Authenticator for eZPublish
+ *
+ * @package EzTotp
+ * @version 0.2
+ * @author Frank Neff <fneff89@gmail.com>
+ * @license LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html
  */
+
 class EzTotpLogAccess implements EzTotpLogInterface
 {
     public function write($type, $level, $message, $userId = null)
     {
-
-
         $logObject = EzTotpLogPersistentObject::create(
             EzTotpConfiguration::LOG_TYPE_ACCESS,
             $level,
@@ -36,6 +36,12 @@ class EzTotpLogAccess implements EzTotpLogInterface
         $userFactory = $factory->load("user");
 
         $user = $userFactory->getUserById($userId);
+        if(! $user instanceof EzTotpUser)
+        {
+            $user = $userFactory->getUserById(eZUser::anonymousId());
+        }
+
+
         $userDataMap = $user->attribute("contentobject")->attribute("data_map");
 
         $tpl = eZTemplate::factory();

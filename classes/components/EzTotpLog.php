@@ -32,11 +32,10 @@ class EzTotpLog
             return false;
         }
 
-        if ($userId !== null) {
-            $userObject = eZUser::fetch($userId);
-            if (!$userObject instanceof eZUser) {
-                $userId = null;
-            }
+        $user = eZUser::fetch($userId);
+        if(!$user instanceof eZUser)
+        {
+            $userId = eZUser::anonymousId();
         }
 
         switch ($level)
@@ -122,12 +121,15 @@ class EzTotpLog
 
         foreach ($rows as $row)
         {
+            $user = eZUser::fetch($row['user_id']);
+
             $list[] = array(
                 "id" => $row['id'],
                 "time" => date("D, M j, Y - G:i:s", $row['timestamp']),
                 "user" => array(
                     "id" => $row['user_id'],
-                    "ip" => $row['ip_address']
+                    "ip" => $row['ip_address'],
+                    "name" => $user->Login
                 ),
                 "level" => $row['level'],
                 "message" => $row['message']

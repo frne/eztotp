@@ -139,7 +139,7 @@ window.eztotp.admin = window.eztotp.admin || {};
             domObject.find(".time").html(data.time);
 
             // set user id
-            domObject.find(".user").html(data.user.id);
+            domObject.find(".user").html("<span>" + data.user.name + "</span><span>(" + data.user.id + ")</span>");
 
             // set ip address
             domObject.find(".ip").html(data.user.ip);

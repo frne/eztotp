@@ -157,10 +157,6 @@ class EzTotpLogPersistentObject extends eZPersistentObject
         }
 
         $id = uniqid("log_", true);
-        if(!is_int($UserId))
-        {
-            $UserId = eZUser::currentUserID();
-        }
 
         $row = array(
             "log_id" => $id,

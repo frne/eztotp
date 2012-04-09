@@ -28,7 +28,7 @@ class EzTotpLoginUser extends eZUser
             $factory->log->write(
                 EzTotpConfiguration::LOG_TYPE_ACCESS,
                 EzTotpConfiguration::LOG_LEVEL_WARN,
-                "User does not exist: '$login'"
+                "Authentication failed: User '$login' does not exist."
             );
             return false;
         }
