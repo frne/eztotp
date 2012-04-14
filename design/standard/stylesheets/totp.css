@@ -75,7 +75,26 @@
     margin-right: 10px;
 }
 
+.totp .accordion-heading a
+{
+    text-decoration: none;
+}
+
+.totp .accordion-heading:hover,
+.totp .accordion-heading:active
+{
+    background-color: #f0f0f0;
+}
+
 .clear
 {
     clear: both;
+}
+
+h3.popover-title {
+  margin: 0;
+  font-family: inherit;
+  font-weight: bold;
+  color: inherit;
+  text-rendering: optimizelegibility;
 }

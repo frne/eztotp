@@ -42,17 +42,19 @@
                     Access Log
                 </a>
             </li>
+            <!--
             <li rel="log/hilevel">
                 <a href="{'eztotpadmin/log/hilevel'|ezurl('no')}">
                     Hilevel Log
                 </a>
             </li>
+            -->
             <li class="nav-header">
-                Settings
+                Other
             </li>
             <li rel="settings">
-                <a href="#">
-                    TOTP Settings
+                <a href="{'eztotpadmin/settings'|ezurl('no')}">
+                    Settings
                 </a>
             </li>
             <li rel="setup">
