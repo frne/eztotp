@@ -4,6 +4,12 @@
     float: left;
 }
 
+.totp ul,
+.totp ul li
+{
+    list-style: none !important;
+}
+
 .modal .actionResult
 {
     display: none;
@@ -97,4 +103,9 @@ h3.popover-title {
   font-weight: bold;
   color: inherit;
   text-rendering: optimizelegibility;
+}
+
+.totp .settingsAction
+{
+    float: right;
 }
