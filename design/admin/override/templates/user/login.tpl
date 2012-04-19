@@ -10,8 +10,7 @@
         {else}
         <li>{'Make sure that the username and password is correct.'|i18n( 'design/admin/user/login' )}</li>
         <li>{'All letters must be entered in the correct case.'|i18n( 'design/admin/user/login' )}</li>
-        <li>{'Please use your YubiKey if you have set the OTP in your profile.'|i18n( 'design/admin/user/login' )}</li>
-        <li>{'Make sure you are using the same YubiKey as the one recorded in your profile.'|i18n( 'design/admin/user/login' )}</li>
+        <li>{'Please use your Smartphone with Google Authenticatior and enter thr right OTP Key.'|i18n( 'design/admin/user/login' )}</li>
         <li>{'Please try again or contact the site administrator.'|i18n( 'design/admin/user/login' )}</li>
     {/if}
     </ul>
@@ -85,7 +84,7 @@
                         </div>
 
                         <div class="block">
-                            <label for="id3">{'Google Authentication TOTP Key (if enabled)'|i18n( 'design/admin/user/login' )}
+                            <label for="id3">{'Google Authenticator OTP Key (if enabled)'|i18n( 'design/admin/user/login' )}
                                 :</label>
                             <input class="halfbox" type="text" size="10" name="TotpKey" id="id3"
                                    value="" tabindex="1"

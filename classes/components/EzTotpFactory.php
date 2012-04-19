@@ -3,8 +3,8 @@
  * EzTotp: Two-factor authentication with Google Authenticator for eZPublish
  *
  * @package EzTotp
- * @version 0.2
- * @author Frank Neff <fneff89@gmail.com>
+ * @version 0.3
+ * @author Frank Neff <frankneff.ch>
  * @license LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html
  */
 
@@ -24,6 +24,7 @@ class EzTotpFactory
     public function __construct(EzTotpConfiguration $config)
     {
         $this->config = $config;
+        $this->log = new EzTotpLog($this->config);
     }
 
     /**

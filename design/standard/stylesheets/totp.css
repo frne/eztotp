@@ -1,6 +1,22 @@
-h1.totp
+/**
+ * EzTotp: Two-factor authentication with Google Authenticator for eZPublish
+ *
+ * @package EzTotp
+ * @version 0.3
+ * @author Frank Neff <frankneff.ch>
+ * @license LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html
+ */
+
+.totp h1
 {
     margin: 0;
+    float: left;
+}
+
+.totp ul,
+.totp ul li
+{
+    list-style: none !important;
 }
 
 .modal .actionResult
@@ -12,4 +28,100 @@ h1.totp
 {
     width: 65px;
     display: block;
+}
+
+.totp .table tr#loadMoreLogsTrigger td
+{
+    background-color: #f0f0f0;
+    text-align: center;
+}
+
+.totp .table tr#loadMoreLogsTrigger td button
+{
+    width: 60%;
+    margin: 8px 0;
+}
+
+.totp .table tr.filters
+{
+    display: none;
+}
+
+.totp .tableFilter
+{
+    float: right;
+}
+
+.totp .tableFilter button.clearFilter
+{
+    margin: 0 0 8px 8px;
+}
+
+.totp .table .logListItem .message .short p
+{
+    float: left;
+}
+
+.totp .table .logListItem .message .short .displayFullMessageTrigger
+{
+    float: left;
+    margin: 4px 0 0 10px;
+}
+
+.totp .table .logListItem .message .full
+{
+    display: none;
+}
+
+.totp .table .logListItem .message .full p
+{
+    float: left;
+    color: #333333;
+}
+
+.totp .table .logListItem .message .full p.desc
+{
+    font-weight: bold;
+    color: #AAAAAA;
+}
+
+.totp .table .logListItem .user span
+{
+    margin-right: 10px;
+}
+
+.totp .accordion-heading a
+{
+    text-decoration: none;
+}
+
+.totp .accordion-heading:hover,
+.totp .accordion-heading:active
+{
+    background-color: #f0f0f0;
+}
+
+.clear
+{
+    clear: both;
+}
+
+h3.popover-title {
+  margin: 0;
+  font-family: inherit;
+  font-weight: bold;
+  color: inherit;
+  text-rendering: optimizelegibility;
+}
+
+.totp .settingsAction
+{
+    float: right;
+}
+
+.totp .modal-footer a.btn,
+.totp .modal-footer a.btn:hover
+{
+    color: #ffffff;
+    text-decoration: none;
 }

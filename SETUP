@@ -1,3 +1,5 @@
-To be done...
-
-Sorry ;)
+- IMPORTANT: Clear ALL eZPublish caches just before the installation (because there is a new login-hander and template)
+- download the current package from here: https://github.com/frne/eztotp/downloads
+- extract and copy the folder 'eztotp' into your eZPublish extension directory or install the ezpkg-file
+- create the needed MySQL tables from 'eztotp/doc/database_schema.sql'
+- activate the extension in your site.ini or in your backend

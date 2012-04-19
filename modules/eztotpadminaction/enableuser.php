@@ -3,8 +3,8 @@
  * EzTotp: Two-factor authentication with Google Authenticator for eZPublish
  *
  * @package EzTotp
- * @version 0.2
- * @author Frank Neff <fneff89@gmail.com>
+ * @version 0.3
+ * @author Frank Neff <frankneff.ch>
  * @license LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html
  */
 
@@ -73,7 +73,7 @@ catch (Exception $e)
 
 header('Cache-Control: no-cache, must-revalidate');
 header('Expires: Mon, 26 Jul 1997 05:00:00 GMT');
-//header('Content-type: application/json');
+header('Content-type: application/json');
 
 echo json_encode($result);
 

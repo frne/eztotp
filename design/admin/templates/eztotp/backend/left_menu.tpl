@@ -33,22 +33,34 @@
                 Logs
             </li>
             <li rel="log/error">
-                <a href="#">
-                    Error Log</a></li>
+                <a href="{'eztotpadmin/log/error'|ezurl('no')}">
+                    Error Log
+                </a>
+            </li>
             <li rel="log/access">
-                <a href="#">
-                    Access Log</a></li>
+                <a href="{'eztotpadmin/log/access'|ezurl('no')}">
+                    Access Log
+                </a>
+            </li>
+            <!--
+            <li rel="log/hilevel">
+                <a href="{'eztotpadmin/log/hilevel'|ezurl('no')}">
+                    Hilevel Log
+                </a>
+            </li>
+            -->
             <li class="nav-header">
-                Settings
+                Other
             </li>
             <li rel="settings">
+                <!--a href="{'eztotpadmin/settings'|ezurl('no')}"-->
                 <a href="#">
-                    TOTP Settings
+                    Settings (in development)
                 </a>
             </li>
             <li rel="setup">
                 <a href="#">
-                    Setup
+                    Setup (in development)
                 </a>
             </li>
         </ul>

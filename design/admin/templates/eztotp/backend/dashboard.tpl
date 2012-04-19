@@ -1,30 +1,45 @@
 {def $adminPagePart="dashboard"}
 
+<div class="totp">
+    <div style="position: relative; display: block;">
+        <a target="_blank" href="http://github.com/frne/eztotp">
+            <img style="position: absolute; top: 55px; right: -13px; border: 0;"
+                 src="https://a248.e.akamai.net/assets.github.com/img/abad93f42020b733148435e2cd92ce15c542d320/687474703a2f2f73332e616d617a6f6e6177732e636f6d2f6769746875622f726962626f6e732f666f726b6d655f72696768745f677265656e5f3030373230302e706e67"
+                 alt="Fork me on GitHub">
+        </a>
+    </div>
+{include uri='design:eztotp/parts/checkJavaScript.tpl'}
+    <h1>
+        Dashboard
+    </h1>
 
-<h1 class="totp">
-    Dashboard
-</h1>
-<hr/>
-<div id="totp container">
-    <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aliquam sed vestibulum sem. Nulla diam nulla, facilisis
-        interdum condimentum nec, laoreet vel velit. Mauris convallis feugiat eros, viverra sollicitudin justo vulputate
-        vel. In quis bibendum sem. Maecenas dictum diam vel nulla dapibus porttitor. Mauris volutpat suscipit est eget
-        imperdiet. Integer ac elit metus, vel varius quam. Cras consequat ornare commodo. Nunc sed quam massa, ac
-        fringilla odio. Nulla vitae ante elit, a ultrices libero. Morbi faucibus iaculis purus, a consequat eros porta
-        non. Fusce aliquam interdum metus, non posuere ipsum tristique ut. Praesent pharetra, neque non bibendum
-        convallis, velit sapien cursus nunc, hendrerit cursus augue ipsum in ligula. Pellentesque elit justo, rutrum id
-        viverra quis, vestibulum vitae dolor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere
-        cubilia Curae;
-    </p>
-
-    <p>
-        Aliquam erat volutpat. Integer elementum est at arcu malesuada eu hendrerit justo sollicitudin. Vivamus vel
-        ligula justo. Morbi viverra aliquet massa, vitae dapibus dui congue sed. Integer et tortor libero. Proin
-        imperdiet blandit sapien, id iaculis purus tempor a. Nulla vehicula felis id enim mollis luctus. Maecenas
-        imperdiet lobortis ante, vitae suscipit est mattis quis. Nunc porta pellentesque aliquet. Duis fringilla mauris
-        id lorem gravida fringilla.
-    </p>
+    <div class="clear"></div>
+    <hr/>
+    <div>
+        <h2>In development...</h2>
+        The following parts of the Backend are working:<br/><br/>
+        <ul>
+            <li style="list-style: disc !important; ">
+                Users
+                <ul>
+                    <li style="list-style: disc !important; ">Active</li>
+                    <li style="list-style: disc !important; ">Inactive</li>
+                </ul>
+            </li>
+            <li style="list-style: disc !important; ">
+                Logs
+                <ul>
+                    <li style="list-style: disc !important; ">Error Log</li>
+                    <li style="list-style: disc !important; ">Access Log</li>
+                </ul>
+            </li>
+        </ul>
+        <br/><br/><strong>Help me developing, if you want... </strong><br/>
+        Fork on GITHub
+        <a href="https://github.com/frne/eztotp"
+           class="gitforked-button gitforked-watchers">Fork</a>
+        <script src="http://gitforked.com/api/1.1/button.js" type="text/javascript"></script>
+    </div>
 </div>
 
 <script type="text/javascript">
