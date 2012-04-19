@@ -1,10 +1,11 @@
 <?php
 /**
- * Created by JetBrains PhpStorm.
- * User: frank
- * Date: 07.04.12
- * Time: 19:00
- * To change this template use File | Settings | File Templates.
+ * EzTotp: Two-factor authentication with Google Authenticator for eZPublish
+ *
+ * @package EzTotp
+ * @version 0.3
+ * @author Frank Neff <frankneff.ch>
+ * @license LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html
  */
 interface EzTotpLogInterface
 {
