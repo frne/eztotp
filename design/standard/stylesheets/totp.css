@@ -109,3 +109,10 @@ h3.popover-title {
 {
     float: right;
 }
+
+.totp .modal-footer a.btn,
+.totp .modal-footer a.btn:hover
+{
+    color: #ffffff;
+    text-decoration: none;
+}

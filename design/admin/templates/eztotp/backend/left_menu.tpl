@@ -53,13 +53,14 @@
                 Other
             </li>
             <li rel="settings">
-                <a href="{'eztotpadmin/settings'|ezurl('no')}">
-                    Settings
+                <!--a href="{'eztotpadmin/settings'|ezurl('no')}"-->
+                <a href="#">
+                    Settings (in development)
                 </a>
             </li>
             <li rel="setup">
                 <a href="#">
-                    Setup
+                    Setup (in development)
                 </a>
             </li>
         </ul>
