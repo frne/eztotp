@@ -12,12 +12,12 @@
         </p>
     </div>
     <div class="modal-footer">
-        <a href="javascript:Void(0);"
+        <a href="javascript:void(0);"
            class="btn modalCloseAction"
            data-dismiss="modal">
             Cancel
         </a>
-        <a href="javascript:Void(0);"
+        <a href="javascript:void(0);"
            class="btn btn-primary enableUserAction"
            rel="{concat("eztotpadminaction/enableuser/", $user_object["id"])|ezurl("no")}">
             Enable

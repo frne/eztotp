@@ -3,8 +3,8 @@
  * EzTotp: Two-factor authentication with Google Authenticator for eZPublish
  *
  * @package EzTotp
- * @version 0.2
- * @author Frank Neff <fneff89@gmail.com>
+ * @version 0.3
+ * @author Frank Neff <frankneff.ch>
  * @license LGPL v3 - http://www.gnu.org/licenses/lgpl-3.0.en.html
  */
 
@@ -24,9 +24,12 @@ class EzTotpLoginUser extends eZUser
         $userFactory = $factory->load("user");
         $user = $userFactory->fetchByName($login);
 
-        if(!$user instanceof EzTotpUser)
-        {
-            // user does not exist
+        if (!$user instanceof EzTotpUser) {
+            $factory->log->write(
+                EzTotpConfiguration::LOG_TYPE_ACCESS,
+                EzTotpConfiguration::LOG_LEVEL_WARN,
+                "Authentication failed: User '$login' does not exist."
+            );
             return false;
         }
 

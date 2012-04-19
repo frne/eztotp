@@ -6,8 +6,10 @@ DesignExtensions[]=eztotp
 [JavaScriptSettings]
 JavaScriptList[]=bootstrap.min.js
 BackendJavaScriptList[]=jquery.js
+BackendJavaScriptList[]=jquery.ui.tablefilter.js
 BackendJavaScriptList[]=bootstrap.min.js
 BackendJavaScriptList[]=totpadmin.js
+
 
 [StylesheetSettings]
 BackendCSSFileList[]=bootstrap.css
