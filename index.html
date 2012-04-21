@@ -1,68 +1,376 @@
-<!doctype html>
-<html>
-  <head>
+<html lang="en">
+<head>
     <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="chrome=1">
-    <title>Eztotp by frne</title>
-    
-    <link rel="stylesheet" href="stylesheets/styles.css">
-    <link rel="stylesheet" href="stylesheets/pygment_trac.css">
-    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>EzTotp Project Page</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="">
+    <meta name="author" content="">
+
+    <!-- Le styles -->
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+    <script src="http://code.jquery.com/jquery-1.7.2.min.js"></script>
+    <script src="js/bootstrap.min.js"></script>
+    <!-- Le HTML5 shim, for IE6-8 support of HTML5 elements -->
     <!--[if lt IE 9]>
-    <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+
     <![endif]-->
-  </head>
-  <body>
-    <div class="wrapper">
-      <header>
-        <h1>EzTotp</h1>
-        <p>Two-factor authentication for eZPublish</p>
-        <p class="view"><a href="https://github.com/frne/eztotp">View the Project on GitHub <small>frne/eztotp</small></a></p>
-        <ul>
-          <li><a href="https://github.com/frne/eztotp/zipball/master">Download <strong>ZIP File</strong></a></li>
-          <li><a href="https://github.com/frne/eztotp/tarball/master">Download <strong>TAR Ball</strong></a></li>
-          <li><a href="https://github.com/frne/eztotp">Fork On <strong>GitHub</strong></a></li>
-        </ul>
-      </header>
-      <section>
-        
 
-<p><strong>This software is in development and not stable nor fully functional yet! You use this at your own risk.</strong></p>
+    <script type="text/javascript" src="http://w.sharethis.com/button/buttons.js"></script>
+    <script type="text/javascript">stLight.options({publisher:"ur-a4a279a3-51ae-28b2-2dc7-3b85b2b24ad2"}); </script>
+</head>
 
-<h2>Description</h2>
+<body>
+<div class="navbar">
+    <div class="navbar-inner">
+        <div class="container">
+            <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </a>
+            <a class="brand" href="#">EzTotp Project Page</a>
 
-<p>This is an eZPublish extension which implements a two-factor authentication for the eZPublish login process.</p>
+            <div class="nav-collapse">
+                <ul class="nav">
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#description">Description</a></li>
+                    <li><a href="#downloads">Downloads</a></li>
+                    <li><a href="#links">Links</a></li>
+                    <li><a href="#screenshots">Screenshots</a></li>
+                    <li><a href="#info">Info</a></li>
+                    <li><a href="#disclaimer">Disclaimer</a></li>
+                </ul>
 
-<p>The second authentication-factor is done with the Google Authenticatior mobile app:
-<a href="http://support.google.com/accounts/bin/answer.py?hl=en&amp;answer=1066447">http://support.google.com/accounts/bin/answer.py?hl=en&amp;answer=1066447</a></p>
-
-<p>For more information refere to the SETUP and LICENSE file.</p>
-
-<h2>Community</h2>
-
-<p>You can find this extension on github.com
-Bugreporting and Pullrequest are welcome!
-<a href="https://github.com/frne/eztotp">https://github.com/frne/eztotp</a></p>
-
-<p>When the time has come, and the first major-release is out, there will be a project on ez.no and a project webpage...</p>
-
-<h2>Support</h2>
-
-<p>I will not provide any user- or installation-support. If you find a bug, please report or fix and pull-request it. Please use the github issue-tracker for communication. I will ignore e-mails.</p>
-
-<h2>Misc</h2>
-
-<p><strong>@package</strong> EzTotp<br />
-<strong>@Version</strong> 0.3<br />
-<strong>@author</strong> Frank Neff <a href="https://frankneff.ch">frankneff.ch</a><br />
-<strong>@license</strong> LGPL v3 - <a href="http://www.gnu.org/licenses/lgpl-3.0.en.html">http://www.gnu.org/licenses/lgpl-3.0.en.html</a><br /></p>
-      </section>
-      <footer>
-        <p>This project is maintained by <a href="https://github.com/frne">frne</a></p>
-        <p><small>Hosted on GitHub Pages &mdash; Theme by <a href="https://github.com/orderedlist">orderedlist</a></small></p>
-      </footer>
+            </div>
+            <div class="span socialmedia">
+                <span class='st_facebook_large' displayText='Facebook'></span>
+                <span class='st_twitter_large' displayText='Tweet'></span>
+                <span class='st_googleplus_large' displayText='Google +'></span>
+            </div>
+            <div class="clear"></div>
+        </div>
     </div>
-    <script src="javascripts/scale.fix.js"></script>
-    
-  </body>
+    <!-- /navbar-inner -->
+</div>
+<br/><br/>
+
+<div class="container">
+<div class="content">
+<div class="hero-unit">
+    <h1>EzTotp</h1>
+
+    <p>An eZPublish Extension to enable two-factor authentication with Google Authenticator</p>
+</div>
+
+
+<div class="well">
+    <div id="description" class="textmarker"></div>
+    <h2>
+        Description
+    </h2>
+
+    <p>
+        The EzTotp Extension enables a second authentication factor on your eZPublis Instance.
+        The second authentication factor is a 6 digit TOTP key which is generated by the Google Authenticator
+        mobile app.
+        With this Extension, you are able to enable TOTP Authentication for some, or all your eZUsers.
+    </p>
+
+    <strong>Features</strong>
+
+    <p>
+    <ul>
+        <li>
+            Two authentication factors for more login-security
+        </li>
+        <li>
+            Customizable authentication method and timespan
+        </li>
+        <li>
+            TOTP Login Interface for backend siteaccess
+        </li>
+        <li>
+            Advanced user management with enable and block function on eZPublis Admin2 Interface
+        </li>
+        <li>
+            User activation dialogue with QR-Code generator for Smartphone integration
+        </li>
+        <li>
+            Customizable Error- and Access-Logging on
+            <a href="http://share.ez.no/blogs/ez/administration-interface-refresh-take-2-tell-us-more-of-what-you-think"
+               target="_blank">
+                eZPublis Admin2 Interface
+            </a>
+        </li>
+        <li>
+            Self-documenting, unit-tested PHP5 OOP code.
+        </li>
+        <li>
+            Fancy admin GUI built on
+            <a href="http://twitter.github.com/bootstrap/index.html" target="_blank">
+                Twitter Bootstrap
+            </a>
+            &nbsp;and&nbsp;
+            <a href="http://jquery.com/" target="_blank">
+                jQuery
+            </a>
+        </li>
+        <li>
+            <a href="http://www.opensource.org/docs/osd" target="_blank">
+                100% Open Source
+            </a>
+        </li>
+
+    </ul>
+    </p>
+
+    <strong>In a nutshell</strong>
+
+    <p>
+        All changes are inside the extension, there will be no changes made on your core eZPublish.
+        EzTotp uses own persistant objects and database tables. Acces to other database-tables is read-only.
+        If your want to remove the EzTotp Extension, delete the extension directory and the two "eztotp_"
+        database-tables and your setup is as clean as before installation of EzTotp.
+    </p>
+</div>
+
+<div class="well">
+    <div id="downloads" class="textmarker"></div>
+    <h2>
+        Downloads
+    </h2>
+
+    <div class="page-header">
+        <h3>Current
+            <small style="color: #0c0;">V 0.3 (Stable)</small>
+        </h3>
+        <small>This is the actual stable release. Packed as ZIT, TAR or EZPKG.<br/>Recommendet for normal users.</small>
+    </div>
+
+    <div class="row">
+        <a href="https://github.com/downloads/frne/eztotp/eztotp_v0-3.zip" class="span3 btn btn-large download">
+            <img src="img/icons/zip.png" alt="download-icon"/>
+            ZIP - Ariche
+        </a>
+        <a href="https://github.com/downloads/frne/eztotp/eztotp_v0-3.tgz" class="span3 btn btn-large download">
+            <img src="img/icons/tar.png" alt="download-icon"/>
+            TAR - Archive
+        </a>
+        <a href="https://github.com/downloads/frne/eztotp/eztotp_v0-3.ezpkg" class="span3 btn btn-large download">
+            <img src="img/icons/file.png" alt="download-icon"/>
+            EZPKG - File
+        </a>
+    </div>
+
+    <div class="page-header">
+        <h3>Development
+            <small style="color: #c00;">V 0.4a (Unstable Nightly)</small>
+        </h3>
+        <small>This ist the actual development nightly. It's unstable and probably buggy.<br/>Recommendet for
+            developers.
+        </small>
+    </div>
+    <div class="row">
+        <a href="https://github.com/frne/eztotp/zipball/development" class="span3 btn btn-large download">
+            <img src="img/icons/zip.png" alt="download-icon"/>
+            ZIP - Ariche
+        </a>
+        <a href="https://github.com/frne/eztotp/tarball/development" class="span3 btn btn-large download">
+            <img src="img/icons/tar.png" alt="download-icon"/>
+            TAR - Archive
+        </a>
+    </div>
+</div>
+
+<div class="well">
+    <div id="links" class="textmarker"></div>
+    <h2>
+        Links
+    </h2>
+
+    <div class="row">
+        <span class="span2"><strong>GitHub</strong></span>
+                <span class="span5">
+                    <a href="https://github.com/frne/eztotp">
+                        https://github.com/frne/eztotp
+                    </a>
+                </span>
+    </div>
+
+    <div class="row">
+        <span class="span2"><strong>Wiki / Documentation</strong></span>
+                <span class="span5">
+                    <a href="https://github.com/frne/eztotp/wiki">
+                        https://github.com/frne/eztotp/wiki
+                    </a>
+
+                </span>
+    </div>
+
+    <div class="row">
+        <span class="span2"><strong>Issue Tracker</strong></span>
+            <span class="span5">
+                <a href="https://github.com/frne/eztotp/issues">
+                    https://github.com/frne/eztotp/issues
+                </a>
+            </span>
+    </div>
+
+    <div class="row">
+        <span class="span2"><strong>Blog</strong></span>
+            <span class="span5">
+                <a href="http://www.frankneff.ch/posts/tag/eztotp/" target="_blank">
+                    http://www.frankneff.ch/posts/tag/eztotp/
+                </a>
+            </span>
+    </div>
+
+    <div class="row">
+        <span class="span2"><strong>Twitter</strong></span>
+            <span class="span5">
+                <a href="https://twitter.com/#!/search/realtime/%23eztotp" target="_blank">
+                    #totp
+                </a>
+            </span>
+    </div>
+</div>
+
+<div class="well">
+    <div id="screenshots" class="textmarker"></div>
+    <h2>
+        Screenshots
+    </h2>
+
+    <div id="myCarousel" class="carousel slide">
+        <div class="carousel-inner">
+            <div class="item active">
+                <img src="images/large_01.png" alt="">
+
+                <div class="carousel-caption">
+                    <h4>Login</h4>
+
+                    <p>This is the default login screen with EzTotp authentication enabled after a failed login.</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="images/large_02.png" alt="">
+
+                <div class="carousel-caption">
+                    <h4>User Admin - List</h4>
+
+                    <p>All EzUsers in a list. Out of this, your can be manage your users, enable or disable Totp login
+                        and change state.</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="images/large_03.png" alt="">
+
+                <div class="carousel-caption">
+                    <h4>User Admin - QR Code Dialogue</h4>
+
+                    <p>If you click the "QR-Code" button of a user entry, this dialogue will be shown to scan the
+                        Authentication QR-Code with your Smartphone.</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="images/large_04.png" alt="">
+
+                <div class="carousel-caption">
+                    <h4>User Admin - Inactive List with Enable dialogue</h4>
+
+                    <p>This screen shown the User list filtered by state with the "Enable" dialogue of an inactive
+                        user.</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="images/large_05.png" alt="">
+
+                <div class="carousel-caption">
+                    <h4>Access Log - List</h4>
+
+                    <p>The Access Log list shows all login attempts and gives some information about.</p>
+                </div>
+            </div>
+            <div class="item">
+                <img src="images/large_06.png" alt="">
+
+                <div class="carousel-caption">
+                    <h4>Access Log - Filter / Detail</h4>
+
+                    <p>The Access - as any othe list on the EzTotp Backend - cann be full-text filtered. If you click on
+                        the "more" Button of an entry, there will be shown some detailed information.</p>
+                </div>
+            </div>
+        </div>
+        <a class="left carousel-control" href="#myCarousel" data-slide="prev">‹</a>
+        <a class="right carousel-control" href="#myCarousel" data-slide="next">›</a>
+    </div>
+</div>
+
+<div class="well">
+    <div id="info" class="textmarker"></div>
+    <h2>
+        Info
+    </h2>
+
+    <div class="row">
+        <span class="span2"><strong>Project Name</strong></span>
+        <span class="span5">EzTotp</span>
+    </div>
+
+    <div class="row">
+        <span class="span2"><strong>Version</strong></span>
+        <span class="span5">0.3</span>
+    </div>
+
+    <div class="row">
+        <span class="span2"><strong>License</strong></span>
+                        <span class="span5"><a href="http://www.gnu.org/licenses/lgpl.html" target="_blank"
+                                               title="license file on gnu.org">LGPL 3.0</a></span>
+    </div>
+
+    <div class="row">
+        <span class="span2"><strong>Author</strong></span>
+        <span class="span5">Frank Neff - <a href="" target="_blank" title="My homepage">frankneff.ch</a></span>
+    </div>
+</div>
+
+<div class="well">
+    <div id="disclaimer" class="textmarker"></div>
+    <h2>
+        Disclaimer
+    </h2>
+
+    <p>
+        This file is part of the package EzTotp.
+    </p>
+
+    <p>
+        This package is free software; you can redistribute it and/or modify
+        it under the terms of the GNU Lesser General Public License as published by
+        the Free Software Foundation; either version 3 of the License, or
+        (at your option) any later version.
+    </p>
+
+    <p>
+        This package is distributed in the hope that it will be useful,
+        but WITHOUT ANY WARRANTY; without even the implied warranty of
+        MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the
+        GNU Lesser General Public License for more details.
+    </p>
+
+    <p>
+        You should have received a copy of the GNU Lesser General Public License
+        along with this package; if not, write to the Free Software
+        Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA 02111-1307 USA
+    </p>
+</div>
+
+</div>
+</div>
+
+</body>
 </html>

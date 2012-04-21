@@ -1,0 +1,49 @@
+h2 {
+    border-bottom: 1px solid #888;
+    margin-bottom: 10px;
+}
+
+a.download {
+    font-weight: bold;
+    font-size: 16px;
+    color: #888888;
+}
+
+a.download:hover,
+a.download:active{
+    color: #000000;
+}
+
+a.download img {
+
+    margin-right: 20px;
+}
+
+.content {
+    padding-top: 30px;
+}
+
+.navbar {
+    width: 100%;
+    position: fixed;
+    display: block;
+    z-index: 100;
+}
+
+.well {
+    position: relative;
+}
+
+.textmarker {
+    position: absolute;
+    top: -70px;
+}
+
+.socialmedia {
+    float: right;
+    margin: 4px 0 0 0;
+}
+
+.clear {
+    clear: both;
+}
