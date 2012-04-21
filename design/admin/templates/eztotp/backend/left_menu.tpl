@@ -49,20 +49,6 @@
                 </a>
             </li>
             -->
-            <li class="nav-header">
-                Other
-            </li>
-            <li rel="settings">
-                <!--a href="{'eztotpadmin/settings'|ezurl('no')}"-->
-                <a href="#">
-                    Settings (in development)
-                </a>
-            </li>
-            <li rel="setup">
-                <a href="#">
-                    Setup (in development)
-                </a>
-            </li>
         </ul>
     </div>
 </div>
