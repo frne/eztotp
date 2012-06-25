@@ -20,6 +20,8 @@ You can find this extension on github.com
 Bugreporting and Pullrequest are welcome!
 https://github.com/frne/eztotp
 
+Continuously integrated with Travic CI.
+
 When the time has come, and the first major-release is out, there will be a project on ez.no and a project webpage...
 
 ------------------------
